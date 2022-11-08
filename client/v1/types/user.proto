@@ -15,7 +15,7 @@ message User {
   string id = 1; // 用户ID
   int64 create_time = 2; // 创建时间
   string app_id = 3; // 所属应用
-  string channel_id = 4; // 客户自定义渠道（可选）
+  string bucket = 4; // 用户所属分桶（可选）
   string account = 5; // 用户账户名，由接入方指定
   string name = 6; // 用户名称
   UserStatus status = 7; // 状态
