@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package rockim.client.v1;
+package rockim.csdk.v1;
 
-option go_package = "rockim/api/access/comet/client/v1;v1";
+option go_package = "rockim/api/access/comet/csdk/v1;v1";
 
 // 用户接口定义
 service SocketAPI {
