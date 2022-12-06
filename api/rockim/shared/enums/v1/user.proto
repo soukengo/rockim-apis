@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package rockim.shared.enums.v1;
+
+option go_package = "rockim/api/rockim/shared/enums/v1;v1";
+
+// UserStatus 用户状态
+enum UserStatus {
+  USER_STATUS_INVALID = 0; // 无效
+  USER_STATUS_NORMAL = 1; // 正常
+}

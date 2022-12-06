@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package rockim.service.user.v1.types;
+
+option go_package = "rockim/api/rockim/service/user/v1/types;types";
+
+import "rockim/shared/enums/v1/user.proto";
+// 用户
+message User {
+  string id = 1; // 用户ID
+  int64 create_time = 2; // 创建时间
+  int64 update_time = 3; // 创建时间
+  string app_id = 4; // 所属应用
+  string bucket = 5; // 用户所属分桶（可选）
+  string account = 6; // 用户账户名，由接入方指定
+  string name = 7; // 用户名称
+  rockim.shared.enums.v1.UserStatus status = 8; // 状态
+  map<string, string> fields = 9; // 客户自定义字段
+  int64 version = 10; // 用户数据版本号
+}

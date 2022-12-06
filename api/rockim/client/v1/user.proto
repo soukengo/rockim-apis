@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package rockim.csdk.v1;
+package rockim.client.v1;
 
-option go_package = "rockim/api/access/gateway/csdk/v1;v1";
+option go_package = "rockim/api/rockim/client/v1;v1";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "csdk/v1/types/user.proto";
+import "rockim/client/v1/types/user.proto";
 
 // 用户接口定义
 service UserAPI {

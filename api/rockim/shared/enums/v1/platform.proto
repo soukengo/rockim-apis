@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package rockim.shared.enums.v1;
+
+option go_package = "rockim/api/rockim/shared/enums/v1";
+
+// 资源类型
+enum PlatResourceCategory {
+  // 菜单
+  ResourceCategoryMenu = 0;
+  // 页面
+  ResourceCategoryPage = 1;
+  // 功能
+  ResourceCategoryFunction = 2;
+}
+
