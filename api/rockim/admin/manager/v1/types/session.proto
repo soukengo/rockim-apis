@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package rockim.admin.manager.v1.types;
+
+option go_package = "rockim/api/rockim/admin/manager/v1/types;types";
+
+// 登录用户信息
+message SessionUser {
+  // ID
+  string id = 1;
+  // 昵称
+  string name = 2;
+  // 头像
+  string avatar_url = 3;
+}

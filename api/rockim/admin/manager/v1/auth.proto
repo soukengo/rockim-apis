@@ -1,5 +1,5 @@
 syntax = "proto3";
-package rockim.admin.manage.v1;
+package rockim.admin.manager.v1;
 
 option go_package = "rockim/api/rockim/admin/manager/v1;v1";
 
