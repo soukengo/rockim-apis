@@ -6,6 +6,7 @@ option go_package = "rockim/api/rockim/logic/platform/v1;v1";
 
 enum ErrorReason {
   UN_SPECIFIED = 0; // 未知错误
-  TENANT_NOT_FOUND = 1; // 租户不存在
-  APP_NOT_FOUND = 2; // 应用不存在
+  PLAT_USER_NOT_FOUND = 1; // 平台用户不存在
+  TENANT_NOT_FOUND = 2; // 租户不存在
+  APP_NOT_FOUND = 3; // 应用不存在
 }

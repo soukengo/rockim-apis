@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package rockim.service.platform.v1;
+
+option go_package = "rockim/api/rockim/service/platform/v1;v1";
+
+import "rockim/service/platform/v1/types/platform.proto";
+
+// 平台用户接口
+service PlatUserAPI {
+  // 查找平台用户
+  rpc Find (PlatUserFindRequest) returns (PlatUserFindResponse);
+}
+
+message PlatUserFindRequest {
+  string account = 1;
+}
+
+message PlatUserFindResponse {
+  types.PlatUser user = 1;
+}
+

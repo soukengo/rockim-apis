@@ -6,22 +6,21 @@ option go_package = "rockim/api/rockim/admin/manager/v1;v1";
 import "google/api/annotations.proto";
 import "validate/validate.proto";
 
-// 授权接口定义
-service AuthAPI {
+// 会话接口
+service SessionAPI {
   // 登录请求
-  rpc Login (LoginRequest) returns (LoginResponse){
+  rpc Login (SessionCheckRequest) returns (SessionCheckResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/auth/login",
+      post: "/api/manager/v1/session/check",
       body: "*"
     };
   }
 }
 
-message LoginRequest {
+message SessionCheckRequest {
   string account = 1[(validate.rules).string.min_len = 1];
   string password = 2[(validate.rules).string.min_len = 1];
 }
 
-message LoginResponse {
-  string token = 1;
+message SessionCheckResponse {
 }

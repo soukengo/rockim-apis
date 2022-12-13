@@ -24,7 +24,7 @@ message Tenant {
 }
 
 // 租户账号
-message TenantAccount {
+message TenantUser {
   // 账号 ID
   string id = 1;
   // 创建时间
