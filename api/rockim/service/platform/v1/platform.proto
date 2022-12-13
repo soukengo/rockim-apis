@@ -4,12 +4,30 @@ package rockim.service.platform.v1;
 
 option go_package = "rockim/api/rockim/service/platform/v1;v1";
 
+import "validate/validate.proto";
 import "rockim/service/platform/v1/types/platform.proto";
+
 
 // 平台用户接口
 service PlatUserAPI {
   // 查找平台用户
   rpc Find (PlatUserFindRequest) returns (PlatUserFindResponse);
+  // 获取用户角色ID列表
+  rpc ListRoleId (PlatUserRoleIdListRequest) returns (PlatUserRoleIdListResponse);
+}
+
+// 平台角色接口
+service PlatRoleAPI {
+  // 获取角色资源ID列表
+  rpc ListResourceId (PlatRoleResourceIdListRequest) returns (PlatRoleResourceIdListResponse);
+}
+
+// 平台资源接口
+service PlatResourceAPI {
+  // 获取平台资源列表
+  rpc List (PlatResourceListRequest) returns (PlatResourceListResponse);
+  // 获取平台资源列表 (指定id列表)
+  rpc ListByIds (PlatResourceListByIdsRequest) returns (PlatResourceListByIdsResponse);
 }
 
 message PlatUserFindRequest {
@@ -20,3 +38,35 @@ message PlatUserFindResponse {
   types.PlatUser user = 1;
 }
 
+message PlatUserRoleIdListRequest {
+  repeated string userIds = 1[(validate.rules).repeated.min_items = 1];
+}
+
+message PlatUserRoleIdListResponse {
+  repeated string list = 1;
+}
+
+
+message PlatRoleResourceIdListRequest {
+  repeated string roleIds = 1[(validate.rules).repeated.min_items = 1];
+}
+
+message PlatRoleResourceIdListResponse {
+  repeated string list = 1;
+}
+
+
+message PlatResourceListRequest {
+}
+
+message PlatResourceListResponse {
+  repeated rockim.service.platform.v1.types.PlatResource list = 1;
+}
+
+message PlatResourceListByIdsRequest {
+  repeated string ids = 1[(validate.rules).repeated.min_items = 1];
+}
+
+message PlatResourceListByIdsResponse {
+  repeated rockim.service.platform.v1.types.PlatResource list = 1;
+}

@@ -6,6 +6,7 @@ option go_package = "rockim/api/rockim/admin/manager/v1;v1";
 import "google/api/annotations.proto";
 
 import "rockim/admin/manager/v1/types/session.proto";
+import "rockim/admin/manager/v1/types/platform.proto";
 
 // 会话接口
 service SessionAPI {
@@ -13,6 +14,12 @@ service SessionAPI {
   rpc Check (SessionCheckRequest) returns (SessionCheckResponse){
     option (google.api.http) = {
       post: "/api/manager/v1/session/check",
+      body: "*"
+    };
+  }
+  rpc ListResource (SessionListResourceRequest) returns (SessionListResourceResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/session/resources",
       body: "*"
     };
   }
@@ -24,3 +31,10 @@ message SessionCheckRequest {
 message SessionCheckResponse {
   rockim.admin.manager.v1.types.SessionUser session = 1;
 }
+message SessionListResourceRequest {
+}
+
+message SessionListResourceResponse {
+  repeated rockim.admin.manager.v1.types.PlatResourceTree list = 1;
+}
+

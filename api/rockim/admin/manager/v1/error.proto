@@ -5,8 +5,12 @@ package rockim.admin.manager.v1;
 option go_package = "rockim/api/rockim/service/user/v1;v1";
 
 enum ErrorReason {
-  UN_SPECIFIED = 0; // 未知错误
-  ACCOUNT_NOT_FOUND = 1; // 账号不存在
-  PASSWORD_INCORRECT = 2; // 密码不正确
-  AUTHORIZATION_INVALID = 3; // 授权无效
+  // 未知错误
+  UN_SPECIFIED = 0;
+  // 账号不存在
+  ACCOUNT_NOT_FOUND = 1;
+  // 密码不正确
+  PASSWORD_INCORRECT = 2;
+  // 授权无效
+  AUTHORIZATION_INVALID = 3;
 }

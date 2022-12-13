@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package rockim.service.platform.v1.types;
+package rockim.admin.manager.v1.types;
 
-option go_package = "rockim/api/rockim/service/platform/v1/types;types";
+option go_package = "rockim/api/rockim/admin/manager/v1/types;types";
 
 import "rockim/shared/enums/v1/platform.proto";
 
@@ -13,16 +13,12 @@ message PlatUser{
   string id = 1;
   // 创建时间
   int64 create_time = 2;
-  // 创建时间
-  int64 update_time = 3;
   // 登录名
-  string account = 4;
-  // 密码
-  string password = 5;
+  string account = 3;
   // 用户名称
-  string name = 6;
+  string name = 4;
   // 用户名称
-  string avatarUrl = 7;
+  string avatarUrl = 5;
 }
 
 // PlatRole 平台角色
@@ -31,10 +27,8 @@ message PlatRole {
   string id = 1;
   // 创建时间
   int64 create_time = 2;
-  // 创建时间
-  int64 update_time = 3;
   // 角色名称
-  string name = 4;
+  string name = 3;
 }
 
 // PlatResource 平台资源
@@ -43,8 +37,6 @@ message PlatResource {
   string id = 1;
   // 创建时间
   int64 create_time = 2;
-  // 创建时间
-  int64 update_time = 3;
   // 分类
   rockim.shared.enums.v1.PlatResourceCategory category = 4;
   // 菜单名称
@@ -61,4 +53,9 @@ message PlatResource {
   bool leaf = 10;
   // 排序号
   int32 order = 11;
+}
+
+message PlatResourceTree {
+  PlatResource resource = 1;
+  repeated PlatResourceTree children = 2;
 }
