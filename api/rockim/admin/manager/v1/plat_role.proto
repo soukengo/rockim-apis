@@ -1,0 +1,108 @@
+syntax = "proto3";
+package rockim.admin.manager.v1;
+
+option go_package = "rockim/api/rockim/admin/manager/v1;v1";
+
+import "google/api/annotations.proto";
+
+import "rockim/admin/manager/v1/types/platform.proto";
+import "validate/validate.proto";
+import "rockim/shared/types/paginate.proto";
+
+// 角色接口
+service PlatRoleAPI {
+  // 创建角色
+  rpc Create (PlatRoleCreateRequest) returns (PlatRoleCreateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/platform/role/create",
+      body: "*"
+    };
+  }
+  // 修改角色
+  rpc Update (PlatRoleUpdateRequest) returns (PlatRoleUpdateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/platform/role/update",
+      body: "*"
+    };
+  }
+  // 删除角色
+  rpc Delete (PlatRoleDeleteRequest) returns (PlatRoleDeleteResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/platform/role/delete",
+      body: "*"
+    };
+  }
+  // 分页获取角色列表
+  rpc Paging (PlatRolePagingRequest) returns (PlatRolePagingResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/platform/role/paging",
+      body: "*"
+    };
+  }
+  // 获取角色角色ID列表
+  rpc ListResourceId (PlatRoleResourceIdListRequest) returns (PlatRoleResourceIdListResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/platform/role/resource_id/list",
+      body: "*"
+    };
+  }
+}
+
+// PlatRoleOptions 角色选项
+message PlatRoleOptions {
+  // 名称
+  string name = 1[(validate.rules).string.min_len = 1];
+  // 上级ID
+  string remark = 2[(validate.rules).string.min_len = 1];
+}
+
+// PlatRoleCreateRequest 角色创建请求
+message PlatRoleCreateRequest {
+  PlatRoleOptions options = 1[(validate.rules).message.required = true];
+}
+// PlatRoleCreateResponse 角色创建响应
+message PlatRoleCreateResponse {
+
+}
+// PlatRoleUpdateRequest 角色更新请求
+message PlatRoleUpdateRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+  PlatRoleOptions options = 2[(validate.rules).message.required = true];
+}
+// PlatRoleUpdateResponse 角色更新响应
+message PlatRoleUpdateResponse {
+
+}
+// PlatRoleDeleteRequest 角色删除请求
+message PlatRoleDeleteRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+}
+
+// PlatRoleDeleteResponse 角色删除响应
+message PlatRoleDeleteResponse {
+
+}
+// PlatRolePagingRequest 角色分页请求
+message PlatRolePagingRequest {
+  rockim.shared.types.Paginating paginate = 1;
+  string keyword = 2;
+}
+
+// PlatRolePagingResponse 角色分页响应
+message PlatRolePagingResponse {
+  // 角色列表
+  repeated rockim.admin.manager.v1.types.PlatRole list = 1;
+  // 分页数据
+  rockim.shared.types.Paginated paginate = 2;
+}
+
+
+// PlatRoleResourceIdListRequest 角色资源id请求
+message PlatRoleResourceIdListRequest {
+  string roleId = 1[(validate.rules).string.min_len = 1];
+}
+
+// PlatRoleResourceIdListResponse 角色资源id响应
+message PlatRoleResourceIdListResponse {
+  repeated string list = 1;
+}

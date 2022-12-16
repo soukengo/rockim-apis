@@ -17,8 +17,6 @@ message PlatUser{
   string account = 3;
   // 用户名称
   string name = 4;
-  // 用户名称
-  string avatarUrl = 5;
 }
 
 // PlatRole 平台角色

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package rockim.shared.types;
+
+option go_package = "rockim/api/rockim/shared/types";
+
+// Paginating 分页参数
+message Paginating {
+  int32 pageNo = 1;
+  int32 pageSize = 2;
+}
+
+// Paginated 分页结果
+message Paginated {
+  int64 total = 1;
+}

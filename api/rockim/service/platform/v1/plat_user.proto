@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package rockim.service.platform.v1;
+
+option go_package = "rockim/api/rockim/service/platform/v1;v1";
+
+import "validate/validate.proto";
+import "rockim/service/platform/v1/types/platform.proto";
+import "rockim/shared/types/paginate.proto";
+
+
+// 平台用户接口
+service PlatUserAPI {
+  // 创建用户
+  rpc Create (PlatUserCreateRequest) returns (PlatUserCreateResponse);
+  // 修改用户
+  rpc Update (PlatUserUpdateRequest) returns (PlatUserUpdateResponse);
+  // 删除用户
+  rpc Delete (PlatUserDeleteRequest) returns (PlatUserDeleteResponse);
+  // 分页获取用户列表
+  rpc Paging (PlatUserPagingRequest) returns (PlatUserPagingResponse);
+  // 查找平台用户
+  rpc Find (PlatUserFindRequest) returns (PlatUserFindResponse);
+  // 获取用户角色ID列表
+  rpc ListRoleId (PlatUserRoleIdListRequest) returns (PlatUserRoleIdListResponse);
+}
+
+
+
+// PlatUserOptions 用户选项
+message PlatUserOptions {
+  // 账号
+  string account = 1;
+  // 名称
+  string name = 2;
+}
+// PlatUserCreateRequest 用户创建请求
+message PlatUserCreateRequest {
+  PlatUserOptions options = 1;
+  // 密码
+  string password = 2;
+}
+
+// PlatUserCreateResponse 用户创建响应
+message PlatUserCreateResponse {
+}
+
+// PlatUserUpdateRequest 用户更新请求
+message PlatUserUpdateRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+  PlatUserOptions options = 2;
+}
+// PlatUserUpdateResponse 用户更新响应
+message PlatUserUpdateResponse {
+}
+// PlatUserDeleteRequest 用户删除请求
+message PlatUserDeleteRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+}
+// PlatUserDeleteResponse 用户删除响应
+message PlatUserDeleteResponse {
+}
+
+
+// PlatUserPagingRequest 分页获取用户请求
+message PlatUserPagingRequest {
+  rockim.shared.types.Paginating paginate = 1;
+  string keyword = 2;
+}
+
+// PlatUserPagingResponse 分页获取用户响应
+message PlatUserPagingResponse {
+  // 用户列表
+  repeated rockim.service.platform.v1.types.PlatUser list = 1;
+  // 分页数据
+  rockim.shared.types.Paginated paginate = 2;
+}
+
+
+message PlatUserFindRequest {
+  string account = 1;
+}
+
+message PlatUserFindResponse {
+  types.PlatUser user = 1;
+}
+
+message PlatUserRoleIdListRequest {
+  repeated string userIds = 1[(validate.rules).repeated.min_items = 1];
+}
+
+message PlatUserRoleIdListResponse {
+  repeated string list = 1;
+}
