@@ -32,12 +32,8 @@ message PlatResourceOptions {
   string url = 4;
   // ICON
   string icon = 5;
-  // 层级
-  int32 level = 6;
-  // 是否叶子节点
-  bool leaf = 7;
   // 排序号
-  int32 order = 8;
+  int32 order = 6;
 }
 message PlatResourceCreateRequest {
   PlatResourceOptions options = 1[(validate.rules).message.required = true];

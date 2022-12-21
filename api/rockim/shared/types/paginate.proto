@@ -6,8 +6,8 @@ option go_package = "rockim/api/rockim/shared/types";
 
 // Paginating 分页参数
 message Paginating {
-  int32 pageNo = 1;
-  int32 pageSize = 2;
+  int32 page_no = 1;
+  int32 page_size = 2;
 }
 
 // Paginated 分页结果

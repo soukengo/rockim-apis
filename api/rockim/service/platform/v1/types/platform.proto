@@ -21,6 +21,8 @@ message PlatUser{
   string password = 5;
   // 用户名称
   string name = 6;
+  // 是否超级管理员
+  bool is_admin = 7;
 }
 
 // PlatRole 平台角色
@@ -53,10 +55,6 @@ message PlatResource {
   string url = 7;
   // ICON
   string icon = 8;
-  // 层级
-  int32 level = 9;
-  // 是否叶子节点
-  bool leaf = 10;
   // 排序号
-  int32 order = 11;
+  int32 order = 9;
 }

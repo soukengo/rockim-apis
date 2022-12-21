@@ -23,6 +23,8 @@ service PlatUserAPI {
   rpc Find (PlatUserFindRequest) returns (PlatUserFindResponse);
   // 获取用户角色ID列表
   rpc ListRoleId (PlatUserRoleIdListRequest) returns (PlatUserRoleIdListResponse);
+  // 保存用户角色ID列表
+  rpc SaveRoleId (PlatUserRoleIdSaveRequest) returns (PlatUserRoleIdSaveResponse);
 }
 
 
@@ -37,8 +39,10 @@ message PlatUserOptions {
 // PlatUserCreateRequest 用户创建请求
 message PlatUserCreateRequest {
   PlatUserOptions options = 1;
+  // 账号
+  string account = 2;
   // 密码
-  string password = 2;
+  string password = 3;
 }
 
 // PlatUserCreateResponse 用户创建响应
@@ -76,19 +80,34 @@ message PlatUserPagingResponse {
   rockim.shared.types.Paginated paginate = 2;
 }
 
-
+// PlatUserFindRequest 查找用户请求
 message PlatUserFindRequest {
   string account = 1;
 }
 
+// PlatUserFindResponse 查找用户响应
 message PlatUserFindResponse {
   types.PlatUser user = 1;
 }
 
+
+// PlatUserRoleIdListRequest 用户角色id列表请求
 message PlatUserRoleIdListRequest {
-  repeated string userIds = 1[(validate.rules).repeated.min_items = 1];
+  string user_id = 1[(validate.rules).string.min_len = 1];
 }
 
+// PlatUserRoleIdListResponse 用户角色id列表响应
 message PlatUserRoleIdListResponse {
   repeated string list = 1;
+}
+// PlatUserRoleIdSaveRequest 用户角色id保存请求
+message PlatUserRoleIdSaveRequest {
+  // 用户id
+  string user_id = 1[(validate.rules).string.min_len = 1];
+  // 角色Id列表
+  repeated string role_ids = 2;
+}
+
+// PlatUserRoleIdSaveResponse 用户角色id保存响应
+message PlatUserRoleIdSaveResponse {
 }

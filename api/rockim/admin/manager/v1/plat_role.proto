@@ -39,10 +39,17 @@ service PlatRoleAPI {
       body: "*"
     };
   }
-  // 获取角色角色ID列表
+  // 获取角色资源ID列表
   rpc ListResourceId (PlatRoleResourceIdListRequest) returns (PlatRoleResourceIdListResponse){
     option (google.api.http) = {
       post: "/api/manager/v1/platform/role/resource_id/list",
+      body: "*"
+    };
+  }
+  // 保存角色资源ID
+  rpc SaveResourceId (PlatRoleResourceIdSaveRequest) returns (PlatRoleResourceIdSaveResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/platform/role/resource_id/save",
       body: "*"
     };
   }
@@ -52,8 +59,6 @@ service PlatRoleAPI {
 message PlatRoleOptions {
   // 名称
   string name = 1[(validate.rules).string.min_len = 1];
-  // 上级ID
-  string remark = 2[(validate.rules).string.min_len = 1];
 }
 
 // PlatRoleCreateRequest 角色创建请求
@@ -97,12 +102,23 @@ message PlatRolePagingResponse {
 }
 
 
-// PlatRoleResourceIdListRequest 角色资源id请求
+// PlatRoleResourceIdListRequest 角色资源id列表请求
 message PlatRoleResourceIdListRequest {
-  string roleId = 1[(validate.rules).string.min_len = 1];
+  string role_id = 1[(validate.rules).string.min_len = 1];
 }
 
-// PlatRoleResourceIdListResponse 角色资源id响应
+// PlatRoleResourceIdListResponse 角色资源id列表响应
 message PlatRoleResourceIdListResponse {
   repeated string list = 1;
+}
+
+// PlatRoleResourceIdSaveRequest 角色资源id保存请求
+message PlatRoleResourceIdSaveRequest {
+  string role_id = 1[(validate.rules).string.min_len = 1];
+  repeated string resource_ids = 2;
+}
+
+// PlatRoleResourceIdSaveResponse 角色资源id保存响应
+message PlatRoleResourceIdSaveResponse {
+
 }

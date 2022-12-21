@@ -45,12 +45,8 @@ message PlatResource {
   string url = 7;
   // ICON
   string icon = 8;
-  // 层级
-  int32 level = 9;
-  // 是否叶子节点
-  bool leaf = 10;
   // 排序号
-  int32 order = 11;
+  int32 order = 9;
 }
 
 message PlatResourceTree {

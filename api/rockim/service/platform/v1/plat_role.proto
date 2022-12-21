@@ -21,6 +21,8 @@ service PlatRoleAPI {
   rpc Paging (PlatRolePagingRequest) returns (PlatRolePagingResponse);
   // 获取角色角色ID列表
   rpc ListResourceId (PlatRoleResourceIdListRequest) returns (PlatRoleResourceIdListResponse);
+  // 保存角色资源ID
+  rpc SaveResourceId (PlatRoleResourceIdSaveRequest) returns (PlatRoleResourceIdSaveResponse);
 }
 
 
@@ -72,10 +74,21 @@ message PlatRolePagingResponse {
 
 // PlatRoleResourceIdListRequest 角色资源id请求
 message PlatRoleResourceIdListRequest {
-  repeated string roleIds = 1[(validate.rules).repeated.min_items = 1];
+  repeated string role_ids = 1[(validate.rules).repeated.min_items = 1];
 }
 
 // PlatRoleResourceIdListResponse 角色资源id响应
 message PlatRoleResourceIdListResponse {
   repeated string list = 1;
+}
+
+// PlatRoleResourceIdSaveRequest 角色资源id保存请求
+message PlatRoleResourceIdSaveRequest {
+  string role_id = 1[(validate.rules).string.min_len = 1];
+  repeated string resource_ids = 2;
+}
+
+// PlatRoleResourceIdSaveResponse 角色资源id保存响应
+message PlatRoleResourceIdSaveResponse {
+
 }

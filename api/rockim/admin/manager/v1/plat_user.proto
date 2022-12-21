@@ -46,6 +46,13 @@ service PlatUserAPI {
       body: "*"
     };
   }
+  // 获取用户角色ID列表
+  rpc SaveRoleId (PlatUserRoleIdSaveRequest) returns (PlatUserRoleIdSaveResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/platform/user/role_id/save",
+      body: "*"
+    };
+  }
 }
 
 // PlatUserOptions 用户选项
@@ -57,6 +64,10 @@ message PlatUserOptions {
 // PlatUserCreateRequest 用户创建请求
 message PlatUserCreateRequest {
   PlatUserOptions options = 1[(validate.rules).message.required = true];
+  // 账号
+  string account = 2;
+  // 密码
+  string password = 3;
 }
 // PlatUserCreateResponse 用户创建响应
 message PlatUserCreateResponse {
@@ -95,10 +106,23 @@ message PlatUserPagingResponse {
 }
 
 
+// PlatUserRoleIdListRequest 用户角色id列表请求
 message PlatUserRoleIdListRequest {
-  string userId = 1[(validate.rules).string.min_len = 1];
+  string user_id = 1[(validate.rules).string.min_len = 1];
 }
 
+// PlatUserRoleIdListResponse 用户角色id列表响应
 message PlatUserRoleIdListResponse {
   repeated string list = 1;
+}
+// PlatUserRoleIdSaveRequest 用户角色id保存请求
+message PlatUserRoleIdSaveRequest {
+  // 用户id
+  string user_id = 1[(validate.rules).string.min_len = 1];
+  // 角色Id列表
+  repeated string role_ids = 2;
+}
+
+// PlatUserRoleIdSaveResponse 用户角色id保存响应
+message PlatUserRoleIdSaveResponse {
 }
