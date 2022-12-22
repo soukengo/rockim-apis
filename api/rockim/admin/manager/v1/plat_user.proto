@@ -4,9 +4,9 @@ package rockim.admin.manager.v1;
 option go_package = "rockim/api/rockim/admin/manager/v1;v1";
 
 import "google/api/annotations.proto";
+import "validate/validate.proto";
 
 import "rockim/admin/manager/v1/types/platform.proto";
-import "validate/validate.proto";
 import "rockim/shared/types/paginate.proto";
 
 // 用户接口

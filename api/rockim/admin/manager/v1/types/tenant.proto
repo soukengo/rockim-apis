@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package rockim.admin.manager.v1.types;
+
+option go_package = "rockim/api/rockim/admin/manager/v1/types;types";
+
+import "rockim/shared/enums/v1/tenant.proto";
+
+
+// Tenant 商户
+message Tenant {
+  // 商户 ID
+  string id = 1;
+  // 创建时间
+  int64 create_time = 2;
+  // 商户名称
+  string name = 3;
+  // 商户状态
+  rockim.shared.enums.v1.TenantStatus status = 4;
+  // 管理员账号
+  string account = 5;
+  // 管理员登录密码
+  string password = 6;
+}
+
+
+// TenantResource 商户资源
+message TenantResource {
+  // 资源ID
+  string id = 1;
+  // 创建时间
+  int64 create_time = 2;
+  // 分类
+  rockim.shared.enums.v1.TenantResourceCategory category = 4;
+  // 资源名称
+  string name = 5;
+  // 上级ID
+  string parent_id = 6;
+  // URL
+  string url = 7;
+  // ICON
+  string icon = 8;
+  // 排序号
+  int32 order = 9;
+}
+
+message TenantResourceTree {
+  TenantResource resource = 1;
+  repeated TenantResourceTree children = 2;
+}

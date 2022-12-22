@@ -4,16 +4,38 @@ package rockim.service.platform.v1;
 
 option go_package = "rockim/api/rockim/service/platform/v1;v1";
 
+import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "rockim/service/platform/v1/types/app.proto";
+import "rockim/admin/tenant/v1/types/app.proto";
+
 
 
 // App 应用接口定义
 service AppAPI {
-  rpc Create (AppCreateRequest) returns (AppCreateResponse);
-  rpc Update (AppUpdateRequest) returns (AppUpdateResponse);
-  rpc Find (AppFindRequest) returns (AppFindResponse);
-  rpc ListByTenant (AppListByTenantRequest) returns (AppListByTenantResponse);
+  rpc Create (AppCreateRequest) returns (AppCreateResponse){
+    option (google.api.http) = {
+      post: "/api/tenant/v1/app/create",
+      body: "*"
+    };
+  };
+  rpc Update (AppUpdateRequest) returns (AppUpdateResponse){
+    option (google.api.http) = {
+      post: "/api/tenant/v1/app/update",
+      body: "*"
+    };
+  };
+  rpc Find (AppFindRequest) returns (AppFindResponse){
+    option (google.api.http) = {
+      post: "/api/tenant/v1/app/find",
+      body: "*"
+    };
+  };
+  rpc Paging (AppListRequest) returns (AppListResponse){
+    option (google.api.http) = {
+      post: "/api/tenant/v1/app/list",
+      body: "*"
+    };
+  };
 }
 
 // AppCreateRequest 创建请求
@@ -55,16 +77,13 @@ message AppFindResponse {
   types.App app = 1;
 }
 
-// AppListByTenantRequest 获取商户应用列表请求
-message AppListByTenantRequest {
-  // 商户ID
-  string tenant_id = 1[(validate.rules).string.min_len = 1];
-  // 应用ID
-  repeated string app_ids = 2;
+// AppListRequest 获取商户应用列表请求
+message AppListRequest {
+
 }
 
-// AppListByTenantRequest 获取商户应用列表响应
-message AppListByTenantResponse {
+// AppListResponse 获取商户应用列表响应
+message AppListResponse {
   repeated types.App list = 1;
 }
 

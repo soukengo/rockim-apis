@@ -7,12 +7,12 @@ option go_package = "rockim/api/rockim/shared/enums/v1";
 // 资源类型
 enum PlatResourceCategory {
   // 无效
-  RESOURCE_CATEGORY_INVALID = 0;
+  PLAT_RESOURCE_CATEGORY_INVALID = 0;
   // 菜单
-  RESOURCE_CATEGORY_MENU = 1;
+  PLAT_RESOURCE_CATEGORY_MENU = 1;
   // 页面
-  RESOURCE_CATEGORY_PAGE = 2;
+  PLAT_RESOURCE_CATEGORY_PAGE = 2;
   // 功能
-  RESOURCE_CATEGORY_FUNCTION = 3;
+  PLAT_RESOURCE_CATEGORY_FUNCTION = 3;
 }
 
