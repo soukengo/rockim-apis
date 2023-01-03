@@ -1,8 +1,7 @@
 syntax = "proto3";
+package rockim.admin.tenant.v1;
 
-package rockim.service.platform.v1;
-
-option go_package = "rockim/api/rockim/service/platform/v1;v1";
+option go_package = "rockim/api/rockim/admin/tenant/v1;v1";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
@@ -41,9 +40,9 @@ service AppAPI {
 // AppCreateRequest 创建请求
 message AppCreateRequest {
   // 所属租户
-  string tenant_id = 1;
+  string tenant_id = 1[(validate.rules).string.min_len = 1];
   // 应用名称
-  string name = 2;
+  string name = 2[(validate.rules).string.min_len = 1];
 }
 
 // AppCreateRequest 创建响应
@@ -54,7 +53,7 @@ message AppCreateResponse {
 // AppUpdateRequest 更新请求
 message AppUpdateRequest {
   // app id
-  string id = 1;
+  string id = 1[(validate.rules).string.min_len = 1];
   // 应用名称
   string name = 2;
   // 应用密钥
@@ -74,7 +73,7 @@ message AppFindRequest {
 
 // AppFindResponse 查找应用响应
 message AppFindResponse {
-  types.App app = 1;
+  rockim.admin.tenant.v1.types.App app = 1;
 }
 
 // AppListRequest 获取商户应用列表请求
@@ -84,6 +83,6 @@ message AppListRequest {
 
 // AppListResponse 获取商户应用列表响应
 message AppListResponse {
-  repeated types.App list = 1;
+  repeated rockim.admin.tenant.v1.types.App list = 1;
 }
 

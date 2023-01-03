@@ -10,9 +10,11 @@ enum ErrorReason {
   // 平台用户不存在
   PLAT_USER_NOT_FOUND = 1;
   // 账号重复
-  ACCOUNT_DUPLICATE = 2;
-  // 租户不存在
+  PLAT_USER_ACCOUNT_DUPLICATE = 2;
+  // 商户不存在
   TENANT_NOT_FOUND = 3;
+  // 商户账号重复
+  TENANT_ACCOUNT_DUPLICATE = 4;
   // 应用不存在
-  APP_NOT_FOUND = 4;
+  APP_NOT_FOUND = 5;
 }

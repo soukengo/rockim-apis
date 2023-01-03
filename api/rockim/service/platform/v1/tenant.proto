@@ -23,8 +23,8 @@ service TenantAPI {
 
 // TenantCreateRequest 创建商户请求
 message TenantCreateRequest {
-  // 账号
-  string account = 1[(validate.rules).string.min_len = 1];
+  // 邮箱
+  string email = 1[(validate.rules).string.min_len = 1];
   // 密码
   string password = 2[(validate.rules).string.min_len = 1];
   // 名称
@@ -64,10 +64,10 @@ message TenantPagingResponse {
 
 // TenantFindRequest 查找商户请求
 message TenantFindRequest {
-  string account = 1;
+  string email = 1;
 }
 
 // TenantFindResponse 查找商户响应
 message TenantFindResponse {
-  types.Tenant tenant = 1;
+  rockim.service.platform.v1.types.Tenant tenant = 1;
 }

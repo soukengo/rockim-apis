@@ -13,14 +13,12 @@ message Tenant {
   string id = 1;
   // 创建时间
   int64 create_time = 2;
+  // 邮箱
+  string email = 3;
   // 商户名称
-  string name = 3;
+  string name = 4;
   // 商户状态
-  rockim.shared.enums.v1.TenantStatus status = 4;
-  // 管理员账号
-  string account = 5;
-  // 管理员登录密码
-  string password = 6;
+  rockim.shared.enums.v1.TenantStatus status = 5;
 }
 
 
