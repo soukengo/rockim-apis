@@ -12,7 +12,7 @@ service UserAPI {
 }
 
 message UserRegisterRequest {
-  string app_id = 1; // 所属应用
+  string product_id = 1; // 所属应用
   string bucket = 2; // 用户所属分桶（可选）
   string account = 3; // 用户账户名，由接入方指定
   string name = 4; // 用户名称

@@ -21,7 +21,7 @@ service UserAPI {
 // UserRegisterRequest 注册用户请求
 message UserRegisterRequest {
   // 所属应用
-  string app_id = 1[(validate.rules).string.min_len = 1];
+  string product_id = 1[(validate.rules).string.min_len = 1];
   // 用户所属分桶（可选）
   string bucket = 2;
   // 用户账户名，由接入方指定

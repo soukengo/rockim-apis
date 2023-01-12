@@ -11,7 +11,7 @@ service AuthAPI {
 }
 
 message LoginRequest {
-  string app_id = 1; // 所属应用
+  string product_id = 1; // 所属应用
   string account = 3; // 用户账户名，由接入方指定
 }
 

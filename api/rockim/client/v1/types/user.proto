@@ -13,7 +13,7 @@ message User {
   // 创建时间
   int64 create_time = 2;
   // 所属应用
-  string app_id = 3;
+  string product_id = 3;
   // 用户所属分桶（可选）
   string bucket = 4;
   // 用户账户名，由接入方指定
