@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package rockim.shared.types;
+package rockim.shared;
 
-option go_package = "rockim/api/rockim/shared/types";
+option go_package = "rockim/api/rockim/shared";
 
 // Paginating 分页参数
 message Paginating {

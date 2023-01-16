@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package rockim.shared.enums.v1;
+package rockim.shared.enums;
 
-option go_package = "rockim/api/rockim/shared/enums/v1;v1";
+option go_package = "rockim/api/rockim/shared/enums;enums";
 
 // UserStatus 用户状态
 enum UserStatus {

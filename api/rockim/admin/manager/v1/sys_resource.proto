@@ -1,0 +1,84 @@
+syntax = "proto3";
+package rockim.admin.manager.v1;
+
+option go_package = "rockim/api/rockim/admin/manager/v1;v1";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+import "rockim/admin/manager/v1/types/sys.proto";
+import "rockim/shared/enums/admin.proto";
+
+// 资源接口
+service SysResourceAPI {
+  // 创建资源
+  rpc Create (SysResourceCreateRequest) returns (SysResourceCreateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/resource/create",
+      body: "*"
+    };
+  }
+  // 修改资源
+  rpc Update (SysResourceUpdateRequest) returns (SysResourceUpdateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/resource/update",
+      body: "*"
+    };
+  }
+  // 删除资源
+  rpc Delete (SysResourceDeleteRequest) returns (SysResourceDeleteResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/resource/delete",
+      body: "*"
+    };
+  }
+  // 获取资源列表
+  rpc ListTree (SysResourceTreeRequest) returns (SysResourceTreeResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/resource/tree",
+      body: "*"
+    };
+  }
+}
+
+message SysResourceOptions {
+  rockim.shared.enums.AdminResourceCategory category = 1[(validate.rules).enum.defined_only = true];
+  // 菜单名称
+  string name = 2[(validate.rules).string.min_len = 1];
+  // 上级ID
+  string parent_id = 3[(validate.rules).string.min_len = 1];
+  // URL
+  string url = 4;
+  // ICON
+  string icon = 5;
+  // 排序号
+  int32 order = 6;
+}
+
+message SysResourceCreateRequest {
+  SysResourceOptions options = 1[(validate.rules).message.required = true];
+}
+message SysResourceCreateResponse {
+
+}
+message SysResourceUpdateRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+  SysResourceOptions options = 2[(validate.rules).message.required = true];
+}
+message SysResourceUpdateResponse {
+
+}
+message SysResourceDeleteRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+}
+message SysResourceDeleteResponse {
+
+}
+
+message SysResourceTreeRequest {
+}
+
+message SysResourceTreeResponse {
+  repeated rockim.admin.manager.v1.types.SysResourceTree list = 1;
+}
+

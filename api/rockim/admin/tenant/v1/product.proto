@@ -6,6 +6,7 @@ option go_package = "rockim/api/rockim/admin/tenant/v1;v1";
 import "google/api/annotations.proto";
 import "validate/validate.proto";
 import "rockim/admin/tenant/v1/types/product.proto";
+import "rockim/shared/paginate.proto";
 
 
 
@@ -23,15 +24,9 @@ service ProductAPI {
       body: "*"
     };
   };
-  rpc Find (ProductFindRequest) returns (ProductFindResponse){
+  rpc Paging (ProductPagingRequest) returns (ProductPagingResponse){
     option (google.api.http) = {
-      post: "/api/tenant/v1/product/find",
-      body: "*"
-    };
-  };
-  rpc Paging (ProductListRequest) returns (ProductListResponse){
-    option (google.api.http) = {
-      post: "/api/tenant/v1/product/list",
+      post: "/api/tenant/v1/product/paging",
       body: "*"
     };
   };
@@ -39,10 +34,8 @@ service ProductAPI {
 
 // ProductCreateRequest 创建请求
 message ProductCreateRequest {
-  // 所属租户
-  string tenant_id = 1[(validate.rules).string.min_len = 1];
   // 应用名称
-  string name = 2[(validate.rules).string.min_len = 1];
+  string name = 1[(validate.rules).string.min_len = 1];
 }
 
 // ProductCreateRequest 创建响应
@@ -63,24 +56,15 @@ message ProductUpdateResponse {
 
 }
 
-// ProductFindRequest 查找应用请求
-message ProductFindRequest {
-  // product id
-  string id = 1;
-}
-
-// ProductFindResponse 查找应用响应
-message ProductFindResponse {
-  rockim.admin.tenant.v1.types.Product product = 1;
-}
-
-// ProductListRequest 获取商户应用列表请求
-message ProductListRequest {
+// ProductPagingRequest 获取商户应用列表请求
+message ProductPagingRequest {
 
 }
 
-// ProductListResponse 获取商户应用列表响应
-message ProductListResponse {
+// ProductPagingResponse 获取商户应用列表响应
+message ProductPagingResponse {
   repeated rockim.admin.tenant.v1.types.Product list = 1;
+  // 分页数据
+  rockim.shared.Paginated paginate = 2;
 }
 

@@ -5,44 +5,45 @@ option go_package = "rockim/api/rockim/admin/manager/v1;v1";
 
 import "google/api/annotations.proto";
 
-import "rockim/admin/manager/v1/types/tenant.proto";
-import "rockim/shared/enums/v1/tenant.proto";
+import "rockim/admin/manager/v1/types/sys.proto";
+import "rockim/shared/enums/admin.proto";
 import "validate/validate.proto";
 
 // 资源接口
-service TenantResourceAPI {
+service SysTenantResourceAPI {
   // 创建资源
   rpc Create (TenantResourceCreateRequest) returns (TenantResourceCreateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/tenant/resource/create",
+      post: "/api/manager/v1/sys/tenant/resource/create",
       body: "*"
     };
   }
   // 修改资源
   rpc Update (TenantResourceUpdateRequest) returns (TenantResourceUpdateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/tenant/resource/update",
+      post: "/api/manager/v1/sys/tenant/resource/update",
       body: "*"
     };
   }
   // 删除资源
   rpc Delete (TenantResourceDeleteRequest) returns (TenantResourceDeleteResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/tenant/resource/delete",
+      post: "/api/manager/v1/sys/tenant/resource/delete",
       body: "*"
     };
   }
   // 获取资源列表
   rpc ListTree (TenantResourceTreeRequest) returns (TenantResourceTreeResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/tenant/resource/tree",
+      post: "/api/manager/v1/sys/tenant/resource/tree",
       body: "*"
     };
   }
 }
 
-message TenantResourceOptions {
-  rockim.shared.enums.v1.TenantResourceCategory category = 1[(validate.rules).enum.defined_only = true];
+// SysTenantResourceOptions
+message SysTenantResourceOptions {
+  rockim.shared.enums.AdminResourceCategory category = 1[(validate.rules).enum.defined_only = true];
   // 菜单名称
   string name = 2[(validate.rules).string.min_len = 1];
   // 上级ID
@@ -56,14 +57,14 @@ message TenantResourceOptions {
 }
 
 message TenantResourceCreateRequest {
-  TenantResourceOptions options = 1[(validate.rules).message.required = true];
+  SysTenantResourceOptions options = 1[(validate.rules).message.required = true];
 }
 message TenantResourceCreateResponse {
 
 }
 message TenantResourceUpdateRequest {
   string id = 1[(validate.rules).string.min_len = 1];
-  TenantResourceOptions options = 2[(validate.rules).message.required = true];
+  SysTenantResourceOptions options = 2[(validate.rules).message.required = true];
 }
 message TenantResourceUpdateResponse {
 
@@ -79,6 +80,6 @@ message TenantResourceTreeRequest {
 }
 
 message TenantResourceTreeResponse {
-  repeated rockim.admin.manager.v1.types.TenantResourceTree list = 1;
+  repeated rockim.admin.manager.v1.types.SysTenantResourceTree list = 1;
 }
 

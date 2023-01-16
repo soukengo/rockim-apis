@@ -4,7 +4,7 @@ package rockim.service.user.v1.types;
 
 option go_package = "rockim/api/rockim/service/user/v1/types;types";
 
-import "rockim/shared/enums/v1/user.proto";
+import "rockim/shared/enums/user.proto";
 // 用户
 message User {
   // 用户ID
@@ -21,7 +21,7 @@ message User {
   string account = 6;
   // 用户名称
   string name = 7;
-  rockim.shared.enums.v1.UserStatus status = 8; // 状态
+  rockim.shared.enums.UserStatus status = 8; // 状态
   // 客户自定义字段
   map<string, string> fields = 9;
   // 用户数据版本号

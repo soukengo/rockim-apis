@@ -1,0 +1,124 @@
+syntax = "proto3";
+package rockim.admin.manager.v1;
+
+option go_package = "rockim/api/rockim/admin/manager/v1;v1";
+
+import "google/api/annotations.proto";
+
+import "rockim/admin/manager/v1/types/sys.proto";
+import "validate/validate.proto";
+import "rockim/shared/paginate.proto";
+
+// 角色接口
+service SysRoleAPI {
+  // 创建角色
+  rpc Create (SysRoleCreateRequest) returns (SysRoleCreateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/role/create",
+      body: "*"
+    };
+  }
+  // 修改角色
+  rpc Update (SysRoleUpdateRequest) returns (SysRoleUpdateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/role/update",
+      body: "*"
+    };
+  }
+  // 删除角色
+  rpc Delete (SysRoleDeleteRequest) returns (SysRoleDeleteResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/role/delete",
+      body: "*"
+    };
+  }
+  // 分页获取角色列表
+  rpc Paging (SysRolePagingRequest) returns (SysRolePagingResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/role/paging",
+      body: "*"
+    };
+  }
+  // 获取角色资源ID列表
+  rpc ListResourceId (SysRoleResourceIdListRequest) returns (SysRoleResourceIdListResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/role/resource_id/list",
+      body: "*"
+    };
+  }
+  // 保存角色资源ID
+  rpc SaveResourceId (SysRoleResourceIdSaveRequest) returns (SysRoleResourceIdSaveResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/role/resource_id/save",
+      body: "*"
+    };
+  }
+}
+
+// SysRoleOptions 角色选项
+message SysRoleOptions {
+  // 名称
+  string name = 1[(validate.rules).string.min_len = 1];
+}
+
+// SysRoleCreateRequest 角色创建请求
+message SysRoleCreateRequest {
+  SysRoleOptions options = 1[(validate.rules).message.required = true];
+}
+// SysRoleCreateResponse 角色创建响应
+message SysRoleCreateResponse {
+
+}
+// SysRoleUpdateRequest 角色更新请求
+message SysRoleUpdateRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+  SysRoleOptions options = 2[(validate.rules).message.required = true];
+}
+// SysRoleUpdateResponse 角色更新响应
+message SysRoleUpdateResponse {
+
+}
+// SysRoleDeleteRequest 角色删除请求
+message SysRoleDeleteRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+}
+
+// SysRoleDeleteResponse 角色删除响应
+message SysRoleDeleteResponse {
+
+}
+// SysRolePagingRequest 角色分页请求
+message SysRolePagingRequest {
+  rockim.shared.Paginating paginate = 1;
+  string keyword = 2;
+}
+
+// SysRolePagingResponse 角色分页响应
+message SysRolePagingResponse {
+  // 角色列表
+  repeated rockim.admin.manager.v1.types.SysRole list = 1;
+  // 分页数据
+  rockim.shared.Paginated paginate = 2;
+}
+
+
+// SysRoleResourceIdListRequest 角色资源id列表请求
+message SysRoleResourceIdListRequest {
+  string role_id = 1[(validate.rules).string.min_len = 1];
+}
+
+// SysRoleResourceIdListResponse 角色资源id列表响应
+message SysRoleResourceIdListResponse {
+  repeated string list = 1;
+}
+
+// SysRoleResourceIdSaveRequest 角色资源id保存请求
+message SysRoleResourceIdSaveRequest {
+  string role_id = 1[(validate.rules).string.min_len = 1];
+  repeated string resource_ids = 2;
+}
+
+// SysRoleResourceIdSaveResponse 角色资源id保存响应
+message SysRoleResourceIdSaveResponse {
+
+}

@@ -6,7 +6,7 @@ option go_package = "rockim/api/rockim/admin/tenant/v1;v1";
 import "google/api/annotations.proto";
 
 import "rockim/admin/tenant/v1/types/session.proto";
-import "rockim/admin/tenant/v1/types/tenant.proto";
+import "rockim/admin/tenant/v1/types/sys.proto";
 
 // 会话接口
 service SessionAPI {
@@ -35,6 +35,6 @@ message SessionListResourceRequest {
 }
 
 message SessionListResourceResponse {
-  repeated rockim.admin.tenant.v1.types.TenantResourceTree list = 1;
+  repeated rockim.admin.tenant.v1.types.SysTenantResourceTree list = 1;
 }
 

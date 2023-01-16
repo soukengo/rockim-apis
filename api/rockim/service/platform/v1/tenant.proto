@@ -6,7 +6,7 @@ option go_package = "rockim/api/rockim/service/platform/v1;v1";
 
 import "validate/validate.proto";
 import "rockim/service/platform/v1/types/tenant.proto";
-import "rockim/shared/types/paginate.proto";
+import "rockim/shared/paginate.proto";
 
 
 // TenantAPI 商户接口
@@ -50,7 +50,7 @@ message TenantUpdateResponse {
 
 // TenantPagingRequest 分页获取商户请求
 message TenantPagingRequest {
-  rockim.shared.types.Paginating paginate = 1;
+  rockim.shared.Paginating paginate = 1;
   string keyword = 2;
 }
 
@@ -59,7 +59,7 @@ message TenantPagingResponse {
   // 商户列表
   repeated rockim.service.platform.v1.types.Tenant list = 1;
   // 分页数据
-  rockim.shared.types.Paginated paginate = 2;
+  rockim.shared.Paginated paginate = 2;
 }
 
 // TenantFindRequest 查找商户请求
