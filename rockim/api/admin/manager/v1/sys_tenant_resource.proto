@@ -1,0 +1,85 @@
+syntax = "proto3";
+package rockim.api.admin.manager.v1;
+
+option go_package = "rockimserver/apis/rockim/api/admin/manager/v1;v1";
+
+import "google/api/annotations.proto";
+
+import "rockim/api/admin/manager/v1/types/sys.proto";
+import "rockim/shared/enums/admin.proto";
+import "validate/validate.proto";
+
+// 资源接口
+service SysTenantResourceAPI {
+  // 创建资源
+  rpc Create (TenantResourceCreateRequest) returns (TenantResourceCreateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/tenant/resource/create",
+      body: "*"
+    };
+  }
+  // 修改资源
+  rpc Update (TenantResourceUpdateRequest) returns (TenantResourceUpdateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/tenant/resource/update",
+      body: "*"
+    };
+  }
+  // 删除资源
+  rpc Delete (TenantResourceDeleteRequest) returns (TenantResourceDeleteResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/tenant/resource/delete",
+      body: "*"
+    };
+  }
+  // 获取资源列表
+  rpc ListTree (TenantResourceTreeRequest) returns (TenantResourceTreeResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/tenant/resource/tree",
+      body: "*"
+    };
+  }
+}
+
+// SysTenantResourceOptions
+message SysTenantResourceOptions {
+  rockim.shared.enums.AdminResourceCategory category = 1[(validate.rules).enum.defined_only = true];
+  // 菜单名称
+  string name = 2[(validate.rules).string.min_len = 1];
+  // 上级ID
+  string parent_id = 3[(validate.rules).string.min_len = 1];
+  // URL
+  string url = 4;
+  // ICON
+  string icon = 5;
+  // 排序号
+  int32 order = 6;
+}
+
+message TenantResourceCreateRequest {
+  SysTenantResourceOptions options = 1[(validate.rules).message.required = true];
+}
+message TenantResourceCreateResponse {
+
+}
+message TenantResourceUpdateRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+  SysTenantResourceOptions options = 2[(validate.rules).message.required = true];
+}
+message TenantResourceUpdateResponse {
+
+}
+message TenantResourceDeleteRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+}
+message TenantResourceDeleteResponse {
+
+}
+
+message TenantResourceTreeRequest {
+}
+
+message TenantResourceTreeResponse {
+  repeated rockim.api.admin.manager.v1.types.SysTenantResourceTree list = 1;
+}
+

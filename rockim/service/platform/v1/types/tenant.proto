@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package rockim.service.platform.v1.types;
+
+option go_package = "rockimserver/apis/rockim/service/platform/v1/types;types";
+
+import "rockim/shared/enums/tenant.proto";
+
+
+// Tenant 商户
+message Tenant {
+  // 商户 ID
+  string id = 1;
+  // 创建时间
+  int64 create_time = 2;
+  // 创建时间
+  int64 update_time = 3;
+  // 邮箱
+  string email = 4;
+  // 商户名称
+  string name = 5;
+  // 管理员登录密码
+  string password = 6;
+  // 商户状态
+  rockim.shared.enums.TenantStatus status = 7;
+}

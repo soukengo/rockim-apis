@@ -1,0 +1,40 @@
+syntax = "proto3";
+package rockim.api.admin.tenant.v1;
+
+option go_package = "rockimserver/apis/rockim/api/admin/tenant/v1;v1";
+
+import "google/api/annotations.proto";
+
+import "rockim/api/admin/tenant/v1/types/session.proto";
+import "rockim/api/admin/tenant/v1/types/sys.proto";
+
+// 会话接口
+service SessionAPI {
+  // 验证登录信息
+  rpc Check (SessionCheckRequest) returns (SessionCheckResponse){
+    option (google.api.http) = {
+      post: "/api/tenant/v1/session/check",
+      body: "*"
+    };
+  }
+  rpc ListResource (SessionListResourceRequest) returns (SessionListResourceResponse){
+    option (google.api.http) = {
+      post: "/api/tenant/v1/session/resources",
+      body: "*"
+    };
+  }
+}
+
+message SessionCheckRequest {
+}
+
+message SessionCheckResponse {
+  rockim.api.admin.tenant.v1.types.SessionUser session = 1;
+}
+message SessionListResourceRequest {
+}
+
+message SessionListResourceResponse {
+  repeated rockim.api.admin.tenant.v1.types.SysTenantResourceTree list = 1;
+}
+

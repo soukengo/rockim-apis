@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package rockim.service.platform.v1;
+
+option go_package = "rockimserver/apis/rockim/service/platform/v1;v1";
+
+import "validate/validate.proto";
+import "rockim/service/platform/v1/types/product.proto";
+
+
+// Product 应用接口定义
+service ProductAPI {
+  rpc Create (ProductCreateRequest) returns (ProductCreateResponse);
+  rpc Update (ProductUpdateRequest) returns (ProductUpdateResponse);
+  rpc Find (ProductFindRequest) returns (ProductFindResponse);
+  rpc ListByTenant (ProductListByTenantRequest) returns (ProductListByTenantResponse);
+}
+
+// ProductCreateRequest 创建请求
+message ProductCreateRequest {
+  // 所属租户
+  string tenant_id = 1;
+  // 应用名称
+  string name = 2;
+}
+
+// ProductCreateRequest 创建响应
+message ProductCreateResponse {
+  string id = 1;
+}
+
+// ProductUpdateRequest 更新请求
+message ProductUpdateRequest {
+  // product id
+  string id = 1;
+  // 应用名称
+  string name = 2;
+}
+
+// ProductUpdateResponse 更新响应
+message ProductUpdateResponse {
+
+}
+
+// ProductFindRequest 查找应用请求
+message ProductFindRequest {
+  // product id
+  string id = 1;
+}
+
+// ProductFindResponse 查找应用响应
+message ProductFindResponse {
+  types.Product product = 1;
+}
+
+// ProductListByTenantRequest 获取商户应用列表请求
+message ProductListByTenantRequest {
+  // 商户ID
+  string tenant_id = 1[(validate.rules).string.min_len = 1];
+  // 应用ID
+  repeated string product_ids = 2;
+}
+
+// ProductListByTenantRequest 获取商户应用列表响应
+message ProductListByTenantResponse {
+  repeated rockim.service.platform.v1.types.Product list = 1;
+}
+

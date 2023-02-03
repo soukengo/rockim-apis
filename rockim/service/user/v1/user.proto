@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package rockim.service.user.v1;
+
+option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
+
+import "rockim/service/user/v1/types/user.proto";
+
+// 用户接口定义
+service UserAPI {
+  rpc Register (UserRegisterRequest) returns (UserRegisterResponse);
+}
+
+message UserRegisterRequest {
+  string product_id = 1; // 所属应用
+  string bucket = 2; // 用户所属分桶（可选）
+  string account = 3; // 用户账户名，由接入方指定
+  string name = 4; // 用户名称
+  map<string, string> fields = 5; // 客户自定义字段
+}
+
+message UserRegisterResponse {
+  types.User user = 1;
+}

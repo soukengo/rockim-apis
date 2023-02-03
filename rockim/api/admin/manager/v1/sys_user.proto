@@ -1,0 +1,128 @@
+syntax = "proto3";
+package rockim.api.admin.manager.v1;
+
+option go_package = "rockimserver/apis/rockim/api/admin/manager/v1;v1";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+import "rockim/api/admin/manager/v1/types/sys.proto";
+import "rockim/shared/paginate.proto";
+
+// 用户接口
+service SysUserAPI {
+  // 创建用户
+  rpc Create (SysUserCreateRequest) returns (SysUserCreateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/user/create",
+      body: "*"
+    };
+  }
+  // 修改用户
+  rpc Update (SysUserUpdateRequest) returns (SysUserUpdateResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/user/update",
+      body: "*"
+    };
+  }
+  // 删除用户
+  rpc Delete (SysUserDeleteRequest) returns (SysUserDeleteResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/user/delete",
+      body: "*"
+    };
+  }
+  // 获取用户列表
+  rpc Paging (SysUserPagingRequest) returns (SysUserPagingResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/user/paging",
+      body: "*"
+    };
+  }
+  // 获取用户角色ID列表
+  rpc ListRoleId (SysUserRoleIdListRequest) returns (SysUserRoleIdListResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/user/role_id/list",
+      body: "*"
+    };
+  }
+  // 获取用户角色ID列表
+  rpc SaveRoleId (SysUserRoleIdSaveRequest) returns (SysUserRoleIdSaveResponse){
+    option (google.api.http) = {
+      post: "/api/manager/v1/sys/user/role_id/save",
+      body: "*"
+    };
+  }
+}
+
+// SysUserOptions 用户选项
+message SysUserOptions {
+  // 名称
+  string name = 1[(validate.rules).string.min_len = 1];
+}
+
+// SysUserCreateRequest 用户创建请求
+message SysUserCreateRequest {
+  SysUserOptions options = 1[(validate.rules).message.required = true];
+  // 账号
+  string account = 2;
+  // 密码
+  string password = 3;
+}
+// SysUserCreateResponse 用户创建响应
+message SysUserCreateResponse {
+
+}
+// SysUserUpdateRequest 用户更新请求
+message SysUserUpdateRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+  SysUserOptions options = 2[(validate.rules).message.required = true];
+}
+// SysUserUpdateResponse 用户更新响应
+message SysUserUpdateResponse {
+
+}
+// SysUserDeleteRequest 用户删除请求
+message SysUserDeleteRequest {
+  string id = 1[(validate.rules).string.min_len = 1];
+}
+
+// SysUserDeleteResponse 用户删除响应
+message SysUserDeleteResponse {
+
+}
+// SysUserPagingRequest 用户分页请求
+message SysUserPagingRequest {
+  rockim.shared.Paginating paginate = 1;
+  string keyword = 2;
+}
+
+// SysUserPagingResponse 用户分页响应
+message SysUserPagingResponse {
+  // 用户列表
+  repeated rockim.api.admin.manager.v1.types.SysUser list = 1;
+  // 分页数据
+  rockim.shared.Paginated paginate = 2;
+}
+
+
+// SysUserRoleIdListRequest 用户角色id列表请求
+message SysUserRoleIdListRequest {
+  string user_id = 1[(validate.rules).string.min_len = 1];
+}
+
+// SysUserRoleIdListResponse 用户角色id列表响应
+message SysUserRoleIdListResponse {
+  repeated string list = 1;
+}
+// SysUserRoleIdSaveRequest 用户角色id保存请求
+message SysUserRoleIdSaveRequest {
+  // 用户id
+  string user_id = 1[(validate.rules).string.min_len = 1];
+  // 角色Id列表
+  repeated string role_ids = 2;
+}
+
+// SysUserRoleIdSaveResponse 用户角色id保存响应
+message SysUserRoleIdSaveResponse {
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package rockim.shared.enums;
+
+option go_package = "rockimserver/apis/rockim/shared/enums";
+option java_multiple_files = true;
+option java_package = "cn.rockim.shared.enmus";
+
+// UserStatus 用户状态
+enum UserStatus {
+  // 无效
+  USER_STATUS_INVALID = 0;
+  // 正常
+  USER_STATUS_NORMAL = 1;
+}

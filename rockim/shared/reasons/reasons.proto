@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package rockim.shared.reasons;
+
+option go_package = "rockimserver/apis/rockim/shared/reasons";
+option java_multiple_files = true;
+option java_package = "cn.rockim.shared.reasons";
+
+// ErrorReason 基础错误原因
+enum ErrorReason {
+  // 未知错误
+  UN_SPECIFIED = 0;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package rockim.api.admin.tenant.v1.types;
+
+option go_package = "rockimserver/apis/rockim/api/admin/tenant/v1/types;types";
+
+// Product 应用
+message Product {
+  // 应用 ID
+  string id = 1;
+  // 创建时间
+  int64 create_time = 2;
+  // 所属租户
+  string tenant_id = 3;
+  // 应用名称
+  string name = 4;
+  // 应用密钥
+  string product_key = 5;
+}
