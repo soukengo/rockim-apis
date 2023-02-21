@@ -6,19 +6,45 @@ option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
 
 import "rockim/service/user/v1/types/user.proto";
 
+import "validate/validate.proto";
+
 // 用户接口定义
 service UserAPI {
+  // Register 注册用户
   rpc Register (UserRegisterRequest) returns (UserRegisterResponse);
+  // Find 查找用户
+  rpc Find(UserFindRequest)returns (UserFindResponse);
 }
 
+// UserRegisterRequest 用户注册请求
 message UserRegisterRequest {
-  string product_id = 1; // 所属应用
-  string bucket = 2; // 用户所属分桶（可选）
-  string account = 3; // 用户账户名，由接入方指定
-  string name = 4; // 用户名称
-  map<string, string> fields = 5; // 客户自定义字段
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 用户所属分桶（可选）
+  string bucket = 2;
+  // 用户账户名，由接入方指定
+  string account = 3[(validate.rules).string.min_len = 1];
+  // 用户名称
+  string name = 4[(validate.rules).string.min_len = 1];
+  // 客户自定义字段
+  map<string, string> fields = 5;
 }
 
+// UserRegisterResponse 用户注册响应
 message UserRegisterResponse {
-  types.User user = 1;
+  rockim.service.user.v1.types.User user = 1;
+}
+
+
+// UserFindRequest 用户查找请求
+message UserFindRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 用户账户名，由接入方指定
+  string account = 3[(validate.rules).string.min_len = 1];
+}
+
+// UserFindResponse 用户查找响应
+message UserFindResponse {
+  rockim.service.user.v1.types.User user = 1;
 }

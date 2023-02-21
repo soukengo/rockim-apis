@@ -21,7 +21,8 @@ message User {
   string account = 6;
   // 用户名称
   string name = 7;
-  rockim.shared.enums.UserStatus status = 8; // 状态
+  // 状态
+  rockim.shared.enums.UserStatus status = 8;
   // 客户自定义字段
   map<string, string> fields = 9;
   // 用户数据版本号

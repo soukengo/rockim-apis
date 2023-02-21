@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package rockim.shared.reasons;
+
+option go_package = "rockimserver/apis/rockim/shared/reasons";
+option java_multiple_files = true;
+option java_package = "cn.rockim.shared.reasons";
+
+message Client {
+  enum ErrorReason {
+    // 未知错误
+    UN_SPECIFIED = 0;
+    // 接口地址不存在
+    API_NOT_FOUND = 1;
+    // 无效的签名
+    SIGN_INVALID = 2;
+  }
+}

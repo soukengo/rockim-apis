@@ -12,7 +12,7 @@ service AuthAPI {
   // 登录请求
   rpc Login (LoginRequest) returns (LoginResponse){
     option (google.api.http) = {
-      post: "/api/tenant/v1/auth/login",
+      post: "/admin/tenant/v1/auth/login",
       body: "*"
     };
   }

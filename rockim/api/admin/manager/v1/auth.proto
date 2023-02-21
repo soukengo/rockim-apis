@@ -11,7 +11,7 @@ service AuthAPI {
   // 登录请求
   rpc Login (LoginRequest) returns (LoginResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/auth/login",
+      post: "/admin/manager/v1/auth/login",
       body: "*"
     };
   }

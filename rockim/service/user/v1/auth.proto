@@ -4,18 +4,59 @@ package rockim.service.user.v1;
 
 option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
 
+import "validate/validate.proto";
+
 // 授权接口定义
 service AuthAPI {
-  // 登录接口
+  // 获取授权码（服务端调用）
+  rpc CreateAuthCode (AuthCodeRequest) returns (AuthCodeResponse);
+  // 登录接口（客户端调用）
   rpc Login (LoginRequest) returns (LoginResponse);
+  // 验证访问令牌（客户端接口访问验证）
+  rpc CheckToken (TokenCheckRequest) returns (TokenCheckResponse);
+}
+// AuthCodeRequest 获取授权码请求
+message AuthCodeRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 用户账户名，由接入方指定
+  string account = 3[(validate.rules).string.min_len = 1];
 }
 
+// AuthCodeResponse 获取授权码响应
+message AuthCodeResponse {
+  // 授权码
+  string auth_code = 1;
+  // 失效时间（时间戳）
+  int64 expire_time = 2;
+}
+
+// LoginRequest 登录请求
 message LoginRequest {
-  string product_id = 1; // 所属应用
-  string account = 3; // 用户账户名，由接入方指定
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 授权码（只能使用一次）
+  string auth_code = 2[(validate.rules).string.min_len = 1];
 }
 
+// LoginResponse 登录响应
 message LoginResponse {
+  // 接口访问TOKEN
+  string token = 1;
+  // 失效时间（时间戳）
+  int64 expire_time = 2;
+}
+
+// TokenCheckRequest 令牌验证请求
+message TokenCheckRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 访问令牌
+  string token = 2[(validate.rules).string.min_len = 1];
+}
+
+// TokenCheckResponse 令牌验证响应
+message TokenCheckResponse {
+  // 当前用户ID
   string uid = 1;
-  string token = 2;
 }

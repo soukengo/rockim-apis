@@ -14,28 +14,28 @@ service SysTenantResourceAPI {
   // 创建资源
   rpc Create (TenantResourceCreateRequest) returns (TenantResourceCreateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/tenant/resource/create",
+      post: "/admin/manager/v1/sys/tenant/resource/create",
       body: "*"
     };
   }
   // 修改资源
   rpc Update (TenantResourceUpdateRequest) returns (TenantResourceUpdateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/tenant/resource/update",
+      post: "/admin/manager/v1/sys/tenant/resource/update",
       body: "*"
     };
   }
   // 删除资源
   rpc Delete (TenantResourceDeleteRequest) returns (TenantResourceDeleteResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/tenant/resource/delete",
+      post: "/admin/manager/v1/sys/tenant/resource/delete",
       body: "*"
     };
   }
   // 获取资源列表
   rpc ListTree (TenantResourceTreeRequest) returns (TenantResourceTreeResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/tenant/resource/tree",
+      post: "/admin/manager/v1/sys/tenant/resource/tree",
       body: "*"
     };
   }

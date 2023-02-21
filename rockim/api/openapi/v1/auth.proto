@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package rockim.api.openapi.v1;
+
+option go_package = "rockimserver/apis/rockim/api/openapi/v1;v1";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+// 授权接口定义
+service AuthAPI {
+  // CreateAuthCode 获取授权码
+  rpc CreateAuthCode (AuthCodeRequest) returns (AuthCodeResponse){
+    option (google.api.http) = {
+      post: "/openapi/v1/auth/code",
+      body: "*"
+    };
+  }
+}
+
+// AuthCodeRequest 获取授权码请求
+message AuthCodeRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 账号
+  string account = 2[(validate.rules).string.min_len = 1];
+}
+
+// AuthCodeResponse 获取授权码响应
+message AuthCodeResponse {
+  // 授权码，用于客户端登录
+  string auth_code = 1;
+  // 失效时间（时间戳）
+  int64 expire_time = 2;
+}
+
+

@@ -14,42 +14,42 @@ service SysUserAPI {
   // 创建用户
   rpc Create (SysUserCreateRequest) returns (SysUserCreateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/user/create",
+      post: "/admin/manager/v1/sys/user/create",
       body: "*"
     };
   }
   // 修改用户
   rpc Update (SysUserUpdateRequest) returns (SysUserUpdateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/user/update",
+      post: "/admin/manager/v1/sys/user/update",
       body: "*"
     };
   }
   // 删除用户
   rpc Delete (SysUserDeleteRequest) returns (SysUserDeleteResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/user/delete",
+      post: "/admin/manager/v1/sys/user/delete",
       body: "*"
     };
   }
   // 获取用户列表
   rpc Paging (SysUserPagingRequest) returns (SysUserPagingResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/user/paging",
+      post: "/admin/manager/v1/sys/user/paging",
       body: "*"
     };
   }
   // 获取用户角色ID列表
   rpc ListRoleId (SysUserRoleIdListRequest) returns (SysUserRoleIdListResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/user/role_id/list",
+      post: "/admin/manager/v1/sys/user/role_id/list",
       body: "*"
     };
   }
   // 获取用户角色ID列表
   rpc SaveRoleId (SysUserRoleIdSaveRequest) returns (SysUserRoleIdSaveResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/user/role_id/save",
+      post: "/admin/manager/v1/sys/user/role_id/save",
       body: "*"
     };
   }

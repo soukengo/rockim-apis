@@ -14,28 +14,28 @@ service SysResourceAPI {
   // 创建资源
   rpc Create (SysResourceCreateRequest) returns (SysResourceCreateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/resource/create",
+      post: "/admin/manager/v1/sys/resource/create",
       body: "*"
     };
   }
   // 修改资源
   rpc Update (SysResourceUpdateRequest) returns (SysResourceUpdateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/resource/update",
+      post: "/admin/manager/v1/sys/resource/update",
       body: "*"
     };
   }
   // 删除资源
   rpc Delete (SysResourceDeleteRequest) returns (SysResourceDeleteResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/resource/delete",
+      post: "/admin/manager/v1/sys/resource/delete",
       body: "*"
     };
   }
   // 获取资源列表
   rpc ListTree (SysResourceTreeRequest) returns (SysResourceTreeResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/resource/tree",
+      post: "/admin/manager/v1/sys/resource/tree",
       body: "*"
     };
   }

@@ -13,13 +13,13 @@ service SessionAPI {
   // 验证登录信息
   rpc Check (SessionCheckRequest) returns (SessionCheckResponse){
     option (google.api.http) = {
-      post: "/api/tenant/v1/session/check",
+      post: "/admin/tenant/v1/session/check",
       body: "*"
     };
   }
   rpc ListResource (SessionListResourceRequest) returns (SessionListResourceResponse){
     option (google.api.http) = {
-      post: "/api/tenant/v1/session/resources",
+      post: "/admin/tenant/v1/session/resources",
       body: "*"
     };
   }

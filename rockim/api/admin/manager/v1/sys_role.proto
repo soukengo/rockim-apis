@@ -14,42 +14,42 @@ service SysRoleAPI {
   // 创建角色
   rpc Create (SysRoleCreateRequest) returns (SysRoleCreateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/role/create",
+      post: "/admin/manager/v1/sys/role/create",
       body: "*"
     };
   }
   // 修改角色
   rpc Update (SysRoleUpdateRequest) returns (SysRoleUpdateResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/role/update",
+      post: "/admin/manager/v1/sys/role/update",
       body: "*"
     };
   }
   // 删除角色
   rpc Delete (SysRoleDeleteRequest) returns (SysRoleDeleteResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/role/delete",
+      post: "/admin/manager/v1/sys/role/delete",
       body: "*"
     };
   }
   // 分页获取角色列表
   rpc Paging (SysRolePagingRequest) returns (SysRolePagingResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/role/paging",
+      post: "/admin/manager/v1/sys/role/paging",
       body: "*"
     };
   }
   // 获取角色资源ID列表
   rpc ListResourceId (SysRoleResourceIdListRequest) returns (SysRoleResourceIdListResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/role/resource_id/list",
+      post: "/admin/manager/v1/sys/role/resource_id/list",
       body: "*"
     };
   }
   // 保存角色资源ID
   rpc SaveResourceId (SysRoleResourceIdSaveRequest) returns (SysRoleResourceIdSaveResponse){
     option (google.api.http) = {
-      post: "/api/manager/v1/sys/role/resource_id/save",
+      post: "/admin/manager/v1/sys/role/resource_id/save",
       body: "*"
     };
   }

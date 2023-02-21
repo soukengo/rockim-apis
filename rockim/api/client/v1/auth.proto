@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package rockim.api.client.v1;
+
+option go_package = "rockimserver/apis/rockim/api/client/v1;v1";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+// 授权接口定义
+service AuthAPI {
+  // Login 登录
+  rpc Login (LoginRequest) returns (LoginResponse){
+    option (google.api.http) = {
+      post: "/client/v1/auth/login",
+      body: "*"
+    };
+  }
+}
+
+// UserRegisterRequest 注册用户请求
+message LoginRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 授权码
+  string auth_code = 2[(validate.rules).string.min_len = 1];
+}
+
+// LoginResponse 登录响应
+message LoginResponse {
+  // 访问令牌
+  string token = 1;
+  // 失效时间（时间戳）
+  int64 expire_time = 2;
+}
+
+
