@@ -6,6 +6,7 @@ option go_package = "rockimserver/apis/rockim/api/openapi/v1;v1";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
+import "rockim/api/openapi/v1/openapi.proto";
 
 // 用户接口定义
 service UserAPI {
@@ -20,8 +21,8 @@ service UserAPI {
 
 // UserRegisterRequest 注册用户请求
 message UserRegisterRequest {
-  // 所属应用
-  string product_id = 1[(validate.rules).string.min_len = 1];
+  // 基本参数
+  rockim.api.openapi.v1.APIRequest base = 1[(validate.rules).message.required = true];
   // 用户所属分桶（可选）
   string bucket = 2;
   // 用户账户名，由接入方指定

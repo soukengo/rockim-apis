@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package rockim.api.openapi.v1;
+
+option go_package = "rockimserver/apis/rockim/api/openapi/v1;v1";
+
+import "validate/validate.proto";
+
+message APIRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+}
