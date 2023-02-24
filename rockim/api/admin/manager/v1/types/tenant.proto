@@ -18,5 +18,5 @@ message Tenant {
   // 商户名称
   string name = 4;
   // 商户状态
-  rockim.shared.enums.TenantStatus status = 5;
+  rockim.shared.enums.Tenant.Status status = 5;
 }

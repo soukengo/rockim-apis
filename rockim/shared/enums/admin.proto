@@ -6,14 +6,17 @@ option go_package = "rockimserver/apis/rockim/shared/enums";
 option java_multiple_files = true;
 option java_package = "cn.rockim.shared.enmus";
 
-// 资源类型
-enum AdminResourceCategory {
-  // 无效
-  ADMIN_RESOURCE_CATEGORY_INVALID = 0;
-  // 菜单
-  ADMIN_RESOURCE_CATEGORY_MENU = 1;
-  // 页面
-  ADMIN_RESOURCE_CATEGORY_PAGE = 2;
-  // 功能
-  ADMIN_RESOURCE_CATEGORY_FUNCTION = 3;
+message Admin {
+  // 资源类型
+  enum ResourceCategory {
+    // 无效
+    RESOURCE_CATEGORY_INVALID = 0;
+    // 菜单
+    RESOURCE_CATEGORY_MENU = 1;
+    // 页面
+    RESOURCE_CATEGORY_PAGE = 2;
+    // 功能
+    RESOURCE_CATEGORY_FUNCTION = 3;
+  }
+
 }

@@ -43,7 +43,7 @@ service SysTenantResourceAPI {
 
 // SysTenantResourceOptions
 message SysTenantResourceOptions {
-  rockim.shared.enums.AdminResourceCategory category = 1[(validate.rules).enum.defined_only = true];
+  rockim.shared.enums.Admin.ResourceCategory category = 1[(validate.rules).enum.defined_only = true];
   // 菜单名称
   string name = 2[(validate.rules).string.min_len = 1];
   // 上级ID

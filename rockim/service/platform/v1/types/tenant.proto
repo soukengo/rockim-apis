@@ -22,5 +22,5 @@ message Tenant {
   // 管理员登录密码
   string password = 6;
   // 商户状态
-  rockim.shared.enums.TenantStatus status = 7;
+  rockim.shared.enums.Tenant.Status status = 7;
 }

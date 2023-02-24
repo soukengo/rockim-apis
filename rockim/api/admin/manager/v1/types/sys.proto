@@ -45,7 +45,7 @@ message SysResource {
   // 创建时间
   int64 update_time = 3;
   // 分类
-  rockim.shared.enums.AdminResourceCategory category = 4;
+  rockim.shared.enums.Admin.ResourceCategory category = 4;
   // 资源名称
   string name = 5;
   // 上级ID
@@ -72,7 +72,7 @@ message SysTenantResource {
   // 创建时间
   int64 create_time = 2;
   // 分类
-  rockim.shared.enums.AdminResourceCategory category = 4;
+  rockim.shared.enums.Admin.ResourceCategory category = 4;
   // 资源名称
   string name = 5;
   // 上级ID
