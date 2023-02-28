@@ -15,4 +15,20 @@ message Group {
     // 普通群
     GROUP = 1;
   }
+  // 成员角色
+  enum MemberRole {
+    // 普通用户
+    ORDINARY = 0;
+    // 管理员
+    MANAGER = 1;
+    // 群主
+    OWNER = 3;
+  }
+  // 状态
+  enum Status {
+    // 无效
+    INVALID = 0;
+    // 正常
+    NORMAL = 1;
+  }
 }

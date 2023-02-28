@@ -25,5 +25,4 @@ message User {
   rockim.shared.enums.User.Status status = 8;
   // 自定义字段
   map<string, string> fields = 9;
-
 }

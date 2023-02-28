@@ -11,8 +11,8 @@ message User {
   // Status 用户状态
   enum Status {
     // 无效
-    USER_STATUS_INVALID = 0;
+    INVALID = 0;
     // 正常
-    USER_STATUS_NORMAL = 1;
+    NORMAL = 1;
   }
 }

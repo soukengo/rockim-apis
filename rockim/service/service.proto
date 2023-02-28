@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package rockim.service;
+
+option go_package = "rockimserver/apis/rockim/service;service";
+
+import "validate/validate.proto";
+
+// ServiceRequest rpc service request
+message ServiceRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+}

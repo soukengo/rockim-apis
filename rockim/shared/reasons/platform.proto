@@ -13,7 +13,7 @@ message Platform {
     // 平台用户不存在
     PLAT_USER_NOT_FOUND = 1;
     // 账号重复
-    PLAT_USER_ACCOUNT_DUPLICATE = 2;
+    PLAT_USER_ACCOUNT_DUPLICATED = 2;
     // 商户不存在
     TENANT_NOT_FOUND = 3;
     // 商户账号重复
