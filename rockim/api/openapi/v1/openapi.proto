@@ -8,5 +8,5 @@ import "validate/validate.proto";
 
 message APIRequest {
   // 所属应用
-  string product_id = 1[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 20];
+  string product_id = 1[(validate.rules).string.pattern = "^[a-zA-Z0-9_.-]{1,20}$"];
 }

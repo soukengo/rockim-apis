@@ -26,11 +26,11 @@ message ChatRoomCreateRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组id
-  string custom_group_id = 2[(validate.rules).string.max_len = 64];
+  string custom_group_id = 2[(validate.rules).string.pattern = "^[a-zA-Z0-9_.-]{0,64}$"];
   // 群组名称
-  string name = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 256];
+  string name = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
   // 图标
-  string icon_url = 4[(validate.rules).string.max_len = 256];
+  string icon_url = 4[(validate.rules).string.max_len = 256, (validate.rules).string.uri = true];
   // 扩展字段
   map<string, string> fields = 5[(validate.rules).map.max_pairs = 100, (validate.rules).map.keys.string.max_len = 64, (validate.rules).map.values.string.max_len = 512];
 }
