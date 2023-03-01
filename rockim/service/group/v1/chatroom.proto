@@ -18,7 +18,7 @@ service ChatRoomAPI {
   // Find 查找聊天室
   rpc Find (ChatRoomFindRequest) returns (ChatRoomFindResponse);
   // FindById 根据id查找聊天室
-  rpc FindById (ChatRoomFindRequest) returns (ChatRoomFindResponse);
+  rpc FindById (ChatRoomFindByIdRequest) returns (ChatRoomFindByIdResponse);
 }
 
 // ChatRoomCreateRequest 创建聊天室请求

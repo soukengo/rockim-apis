@@ -10,9 +10,9 @@ option java_package = "cn.rockim.shared.enmus";
 message User {
   // Status 用户状态
   enum Status {
-    // 无效
-    INVALID = 0;
     // 正常
-    NORMAL = 1;
+    NORMAL = 0;
+    // 已删除
+    DELETED = 1;
   }
 }

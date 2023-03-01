@@ -32,7 +32,7 @@ message Group {
 
 // GroupMember 群组成员
 message GroupMember {
-  // 群组ID
+  // ID
   string id = 1;
   // 创建时间
   int64 create_time = 2;
