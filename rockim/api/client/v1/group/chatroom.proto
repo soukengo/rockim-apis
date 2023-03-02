@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package rockim.api.client.v1.group;
+
+option go_package = "rockimserver/apis/rockim/api/client/v1/group;group";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+import "rockim/api/client/v1/group/types/group.proto";
+import "rockim/api/client/v1/client.proto";
+
+// 聊天室接口定义
+service ChatRoomAPI {
+  // Find 查找用户
+  rpc Find(ChatRoomFindRequest)returns (ChatRoomFindResponse){
+    option (google.api.http) = {
+      post: "/client/v1/chatroom/find",
+      body: "*"
+    };
+  }
+}
+
+
+// ChatRoomFindRequest 聊天室查找请求
+message ChatRoomFindRequest {
+  // 基本参数
+  rockim.api.client.v1.APIRequest base = 1[(validate.rules).message.required = true];
+  // 自定义群组ID
+  string custom_group_id = 3[(validate.rules).string.min_len = 1];
+}
+
+// ChatRoomFindResponse 聊天室查找响应
+message ChatRoomFindResponse {
+  rockim.api.client.v1.group.types.Group group = 1;
+}

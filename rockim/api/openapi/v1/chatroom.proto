@@ -19,7 +19,7 @@ service ChatRoomAPI {
   }
 }
 
-// ChatRoomCreateRequest 注册用户请求
+// ChatRoomCreateRequest 创建聊天室请求
 message ChatRoomCreateRequest {
   // 基本参数
   rockim.api.openapi.v1.APIRequest base = 1[(validate.rules).message.required = true];
@@ -28,12 +28,15 @@ message ChatRoomCreateRequest {
   // 群组名称
   string name = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
   // 图标
-  string icon_url = 4[(validate.rules).string.max_len = 256, (validate.rules).string.uri = true];
+  string icon_url = 4[(validate.rules).string.max_len = 256];
   // 扩展字段
   map<string, string> fields = 5[(validate.rules).map.max_pairs = 100, (validate.rules).map.keys.string.max_len = 64, (validate.rules).map.values.string.max_len = 512];
+  // 群主账号（可选）
+  string owner_account = 6;
 }
 
-// ChatRoomCreateResponse 注册用户响应
+// ChatRoomCreateResponse 创建聊天室响应
 message ChatRoomCreateResponse {
-  string uid = 1;
+  // 自定义群组ID
+  string custom_group_id = 3;
 }

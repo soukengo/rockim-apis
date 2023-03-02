@@ -4,10 +4,9 @@ package rockim.service.group.v1;
 
 option go_package = "rockimserver/apis/rockim/service/group/v1;v1";
 
+import "validate/validate.proto";
 import "rockim/service/service.proto";
 import "rockim/service/group/v1/types/group.proto";
-
-import "validate/validate.proto";
 
 // ChatRoomAPI 聊天室接口定义
 service ChatRoomAPI {
@@ -15,8 +14,8 @@ service ChatRoomAPI {
   rpc Create (ChatRoomCreateRequest) returns (ChatRoomCreateResponse);
   // Dismiss 解散聊天室
   rpc Dismiss (ChatRoomDismissRequest) returns (ChatRoomDismissResponse);
-  // Find 查找聊天室
-  rpc Find (ChatRoomFindRequest) returns (ChatRoomFindResponse);
+  // FindGroupId 查找聊天室ID
+  rpc FindGroupId (ChatRoomGroupIdFindRequest) returns (ChatRoomGroupIdFindResponse);
   // FindById 根据id查找聊天室
   rpc FindById (ChatRoomFindByIdRequest) returns (ChatRoomFindByIdResponse);
 }
@@ -30,14 +29,16 @@ message ChatRoomCreateRequest {
   // 群组名称
   string name = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
   // 图标
-  string icon_url = 4[(validate.rules).string.max_len = 256, (validate.rules).string.uri = true];
+  string icon_url = 4[(validate.rules).string.max_len = 256];
   // 扩展字段
-  map<string, string> fields = 5[(validate.rules).map.max_pairs = 100, (validate.rules).map.keys.string.max_len = 64, (validate.rules).map.values.string.max_len = 512];
+  map<string, string> fields = 5;
+  // 群主UID
+  string owner = 6;
 }
 
 // ChatRoomCreateResponse 创建聊天室响应
 message ChatRoomCreateResponse {
-  string group_id = 1;
+  rockim.service.group.v1.types.Group group = 1;
 }
 
 // ChatRoomDismissRequest 解散聊天室请求
@@ -52,16 +53,16 @@ message ChatRoomDismissResponse {
 
 }
 
-// ChatRoomFindRequest 查询聊天室请求
-message ChatRoomFindRequest {
+// ChatRoomGroupIdFindRequest 查询聊天室id请求
+message ChatRoomGroupIdFindRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组id
   string custom_group_id = 2[(validate.rules).string.max_len = 64];
 }
-// ChatRoomFindResponse 查询聊天室响应
-message ChatRoomFindResponse {
-  rockim.service.group.v1.types.Group group = 1;
+// ChatRoomGroupIdFindResponse 查询聊天室Id响应
+message ChatRoomGroupIdFindResponse {
+  string group_id = 1;
 }
 // ChatRoomFindRequest 根据id查询聊天室请求
 message ChatRoomFindByIdRequest {

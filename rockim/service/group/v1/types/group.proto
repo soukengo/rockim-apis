@@ -28,6 +28,8 @@ message Group {
   map<string, string> fields = 9;
   // 状态
   rockim.shared.enums.Group.Status status = 10;
+  // 群主
+  string owner = 11;
 }
 
 // GroupMember 群组成员

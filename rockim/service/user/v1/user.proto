@@ -13,8 +13,12 @@ import "validate/validate.proto";
 service UserAPI {
   // Register 注册用户
   rpc Register (UserRegisterRequest) returns (UserRegisterResponse);
-  // Find 查找用户
+  // Find 查询用户
   rpc Find(UserFindRequest)returns (UserFindResponse);
+  // FindByAccount 根据账号查询用户
+  rpc FindByAccount(UserFindByAccountRequest)returns (UserFindByAccountResponse);
+  // FindUid 查询用户ID
+  rpc FindUid(UserIdFindRequest)returns (UserIdFindResponse);
 }
 
 // UserRegisterRequest 用户注册请求
@@ -37,15 +41,41 @@ message UserRegisterResponse {
 }
 
 
-// UserFindRequest 用户查找请求
+// UserFindRequest 查询用户请求
 message UserFindRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 用户ID
+  string uid = 3[(validate.rules).string.min_len = 1];
+}
+
+// UserFindResponse 查询用户响应
+message UserFindResponse {
+  rockim.service.user.v1.types.User user = 1;
+}
+
+// UserFindByAccountRequest 根据账户查询用户请求
+message UserFindByAccountRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 用户账户名，由接入方指定
   string account = 3[(validate.rules).string.min_len = 1];
 }
 
-// UserFindResponse 用户查找响应
-message UserFindResponse {
+// UserFindByAccountResponse 根据账户查询用户响应
+message UserFindByAccountResponse {
   rockim.service.user.v1.types.User user = 1;
+}
+
+// UserIdFindRequest 查询用户ID请求
+message UserIdFindRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 用户账户名，由接入方指定
+  string account = 3[(validate.rules).string.min_len = 1];
+}
+
+// UserIdFindResponse 查询用户ID响应
+message UserIdFindResponse {
+  string uid = 1;
 }

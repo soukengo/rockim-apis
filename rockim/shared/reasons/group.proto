@@ -16,6 +16,8 @@ message Group {
     GROUP_DUPLICATED = 2;
     // 群组成员不存在
     GROUP_MEMBER_NOT_FOUND = 3;
+    // 自定义群组格式不正确
+    CUSTOM_GROUP_ID_INVALID = 4;
   }
 
 }

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package rockim.api.client.v1.group.types;
+
+option go_package = "rockimserver/apis/rockim/api/client/v1/group/types;types";
+
+import "rockim/shared/enums/group.proto";
+
+// Group 群组
+message Group {
+  // 分类
+  rockim.shared.enums.Group.Category category = 1;
+  // 所属应用
+  string product_id = 2;
+  // 自定义群组ID，由接入方指定（不填的话SDK服务端自动生成）
+  string custom_group_id = 3;
+  // 群组名称
+  string name = 4;
+  // 图标
+  string icon_url = 5;
+  // 自定义字段
+  map<string, string> fields = 6;
+  // 状态
+  rockim.shared.enums.Group.Status status = 7;
+}
+
+// GroupMember 群组成员
+message GroupMember {
+  // 加入时间
+  int64 create_time = 1;
+  // 所属应用
+  string product_id = 2;
+  // 群组id
+  string group_id = 3;
+  // 用户ID
+  string uid = 4;
+  // 角色
+  rockim.shared.enums.Group.MemberRole role = 5;
+  // 自定义字段
+  map<string, string> fields = 6;
+}

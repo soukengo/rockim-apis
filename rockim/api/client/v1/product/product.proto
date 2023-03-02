@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package rockim.api.client.v1.product;
+
+option go_package = "rockimserver/apis/rockim/api/client/v1;v1";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+import "rockim/api/client/v1/client.proto";
+
+// 应用接口定义
+service ProductAPI {
+  // FetchConfig 获取全局配置
+  rpc FetchConfig (ConfigFetchRequest) returns (ConfigFetchResponse){
+    option (google.api.http) = {
+      post: "/client/v1/product/config/fetch",
+      body: "*"
+    };
+  }
+}
+
+// ConfigFetchRequest 获取全局配置请求
+message ConfigFetchRequest {
+  // 基本参数
+  rockim.api.client.v1.APIRequest base = 1[(validate.rules).message.required = true];
+}
+
+// ConfigFetchResponse 获取全局配置响应
+message ConfigFetchResponse {
+
+}
