@@ -8,16 +8,14 @@ option java_package = "cn.rockim.shared.reasons";
 
 message Group {
   enum ErrorReason {
-    // 未知错误
-    UN_SPECIFIED = 0;
     // 群组不存在
-    GROUP_NOT_FOUND = 1;
+    GROUP_NOT_FOUND = 0;
     // 群组重复
-    GROUP_DUPLICATED = 2;
+    GROUP_DUPLICATED = 1;
     // 群组成员不存在
-    GROUP_MEMBER_NOT_FOUND = 3;
+    GROUP_MEMBER_NOT_FOUND = 2;
     // 自定义群组格式不正确
-    CUSTOM_GROUP_ID_INVALID = 4;
+    CUSTOM_GROUP_ID_INVALID = 3;
   }
 
 }

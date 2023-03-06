@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package rockim.api.client.socket.v1;
+
+option go_package = "rockimserver/apis/rockim/api/client/socket/v1;v1";
+
+import "google/protobuf/descriptor.proto";
+import "rockim/api/client/socket/v1/protocol.proto";
+
+extend google.protobuf.MethodOptions {
+  RequestOptions request = 3001;
+}
+
+message RequestOptions {
+  rockim.api.client.socket.v1.Operation operation = 1;
+}

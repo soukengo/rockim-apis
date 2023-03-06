@@ -9,7 +9,7 @@ import "rockim/service/user/v1/types/user.proto";
 
 import "validate/validate.proto";
 
-// 用户接口定义
+// 用户接口
 service UserAPI {
   // Register 注册用户
   rpc Register (UserRegisterRequest) returns (UserRegisterResponse);

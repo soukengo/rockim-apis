@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package rockim.shared.enums;
+
+option go_package = "rockimserver/apis/rockim/shared/enums";
+option java_multiple_files = true;
+option java_package = "cn.rockim.shared.enmus";
+
+// Network 网络通信相关枚举
+message Network {
+  // PacketType 数据包类型
+  enum PacketType {
+    // 客户端请求
+    REQUEST = 0;
+    // 服务端响应
+    RESPONSE = 1;
+    // 服务端主动推送
+    PUSH = 2;
+  }
+
+  enum PushOperation {
+    // 无效值
+    INVALID_PUSH = 0;
+    // 事件通知
+    EVENT = 1;
+    // 系统指令
+    COMMAND = 2;
+    // 消息推送
+    MESSAGES = 3;
+  }
+}

@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package rockim.api.client.v1.user;
+package rockim.api.client.http.v1.user;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/user;user";
+option go_package = "rockimserver/apis/rockim/api/client/http/v1/user;user";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "rockim/api/client/v1/user/types/user.proto";
-import "rockim/api/client/v1/client.proto";
+import "rockim/api/client/http/v1/user/types/user.proto";
+import "rockim/api/client/http/v1/http.proto";
 
 // 用户接口定义
 service UserAPI {
@@ -23,12 +23,12 @@ service UserAPI {
 // UserFindRequest 用户查找请求
 message UserFindRequest {
   // 基本参数
-  rockim.api.client.v1.APIRequest base = 1[(validate.rules).message.required = true];
+  rockim.api.client.http.v1.APIRequest base = 1[(validate.rules).message.required = true];
   // 用户账户名，由接入方指定
   string account = 3[(validate.rules).string.min_len = 1];
 }
 
 // UserFindResponse 用户查找响应
 message UserFindResponse {
-  rockim.api.client.v1.user.types.User user = 1;
+  rockim.api.client.http.v1.user.types.User user = 1;
 }

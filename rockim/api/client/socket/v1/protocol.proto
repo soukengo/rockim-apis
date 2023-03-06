@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package rockim.api.client.socket.v1;
+
+option go_package = "rockimserver/apis/rockim/api/client/socket/v1;v1";
+
+import "rockim/shared/enums/network.proto";
+
+enum Operation {
+  // 无效值
+  INVALID_REQUEST = 0;
+  // 授权包
+  AUTH = 1;
+  // 心跳
+  HEARTBEAT = 2;
+}
+
+// RequestPacketHeader 客户端请求包头部
+message RequestPacketHeader {
+  Operation operation = 1;
+  // 请求id
+  int32 request_id = 2;
+}
+
+// RequestPacketBody 客户端请求包内容
+message RequestPacketBody {
+  bytes body = 1;
+}
+
+// ResponsePacketHeader 服务端响应包头部
+message ResponsePacketHeader {
+  Operation operation = 1;
+  // 请求id
+  int32 request_id = 2;
+  // 是否操作成功
+  bool success = 3;
+  // 链路追踪ID
+  string trace_id = 4;
+}
+
+// ResponsePacketBody 服务端响应包内容
+message ResponsePacketBody {
+  bytes body = 1;
+}
+
+// PushPacketHeader 服务端推送包头部
+message PushPacketHeader {
+  rockim.shared.enums.Network.PushOperation operation = 1;
+}
+
+// PushPacketBody 服务端推送包内容
+message PushPacketBody {
+  bytes body = 1;
+}

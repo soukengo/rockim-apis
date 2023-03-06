@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package rockim.api.client.v1.user.types;
+package rockim.api.client.http.v1.user.types;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/user/types;types";
+option go_package = "rockimserver/apis/rockim/api/client/http/v1/user/types;types";
 
 import "rockim/shared/enums/user.proto";
 

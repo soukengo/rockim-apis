@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package rockim.shared;
+option go_package = "rockimserver/apis/rockim/shared";
+
+// Error 错误结构体
+message Error {
+  // 状态码 同http status code
+  int32 code = 1;
+  // 错误原因
+  string reason = 2;
+  // 错误提示信息
+  string message = 3;
+  // 扩展数据
+  map<string, string> metadata = 4;
+};

@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package rockim.api.client.v1.auth;
+package rockim.api.client.http.v1.auth;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/auth;auth";
+option go_package = "rockimserver/apis/rockim/api/client/http/v1/auth;auth";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "rockim/api/client/v1/client.proto";
+import "rockim/api/client/http/v1/http.proto";
 
 // 授权接口定义
 service AuthAPI {
@@ -22,7 +22,7 @@ service AuthAPI {
 // UserRegisterRequest 注册用户请求
 message LoginRequest {
   // 基本参数
-  rockim.api.client.v1.APIRequest base = 1[(validate.rules).message.required = true];
+  rockim.api.client.http.v1.APIRequest base = 1[(validate.rules).message.required = true];
   // 授权码
   string auth_code = 2[(validate.rules).string.min_len = 1];
 }

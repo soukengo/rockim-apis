@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package rockim.api.client.v1.group;
+package rockim.api.client.http.v1.group;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/group;group";
+option go_package = "rockimserver/apis/rockim/api/client/http/v1/group;group";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "rockim/api/client/v1/group/types/group.proto";
-import "rockim/api/client/v1/client.proto";
+import "rockim/api/client/http/v1/group/types/group.proto";
+import "rockim/api/client/http/v1/http.proto";
 
 // 用户接口定义
 service ChatRoomMemberAPI {
@@ -30,7 +30,7 @@ service ChatRoomMemberAPI {
 // ChatRoomJoinRequest 聊天室加入请求
 message ChatRoomJoinRequest {
   // 基本参数
-  rockim.api.client.v1.APIRequest base = 1[(validate.rules).message.required = true];
+  rockim.api.client.http.v1.APIRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组ID
   string custom_group_id = 3[(validate.rules).string.min_len = 1];
 }
@@ -42,7 +42,7 @@ message ChatRoomJoinResponse {
 // ChatRoomQuitRequest 聊天室退出请求
 message ChatRoomQuitRequest {
   // 基本参数
-  rockim.api.client.v1.APIRequest base = 1[(validate.rules).message.required = true];
+  rockim.api.client.http.v1.APIRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组ID
   string custom_group_id = 3[(validate.rules).string.min_len = 1];
 }
