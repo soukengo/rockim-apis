@@ -5,22 +5,20 @@ package rockim.service.user.v1;
 option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
 
 import "rockim/service/service.proto";
-import "rockim/service/user/v1/types/user.proto";
-
 import "validate/validate.proto";
 
 // 在线状态接口
 service OnlineAPI {
-  // Connect 建立连接
-  rpc Connect (OnlineConnectRequest) returns (OnlineConnectResponse);
-  // DisConnect 断开连接
-  rpc DisConnect (OnlineDisConnectRequest) returns (OnlineDisConnectResponse);
-  // HeartBeat 心跳
-  rpc HeartBeat (OnlineHeartBeatRequest) returns (OnlineHeartBeatResponse);
+  // Add 添加在线连接
+  rpc Add (OnlineAddRequest) returns (OnlineAddResponse);
+  // Delete 移除在线连接
+  rpc Delete (OnlineDeleteRequest) returns (OnlineDeleteResponse);
+  // Refresh 刷新在线连接
+  rpc Refresh (OnlineRefreshRequest) returns (OnlineRefreshResponse);
 }
 
-// OnlineConnectRequest 建立连接请求
-message OnlineConnectRequest {
+// OnlineAddRequest 添加在线连接请求
+message OnlineAddRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 服务器id
@@ -31,12 +29,12 @@ message OnlineConnectRequest {
   string token = 4[(validate.rules).string.min_len = 1];
 }
 
-// OnlineConnectResponse 建立连接响应
-message OnlineConnectResponse {
+// OnlineAddResponse 添加在线连接响应
+message OnlineAddResponse {
   string uid = 1;
 }
-// OnlineDisConnectRequest 断开连接请求
-message OnlineDisConnectRequest {
+// OnlineDeleteRequest 移除在线连接请求
+message OnlineDeleteRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 服务器id
@@ -45,21 +43,23 @@ message OnlineDisConnectRequest {
   string channel_id = 3[(validate.rules).string.min_len = 1];
 }
 
-// OnlineDisConnectResponse 断开连接响应
-message OnlineDisConnectResponse {
+// OnlineDeleteResponse 移除在线连接响应
+message OnlineDeleteResponse {
 
 }
-// OnlineHeartBeatRequest 心跳请求
-message OnlineHeartBeatRequest {
+// OnlineRefreshRequest 刷新在线连接请求
+message OnlineRefreshRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 服务器id
   string server_id = 2[(validate.rules).string.min_len = 1];
   // 连接id
   string channel_id = 3[(validate.rules).string.min_len = 1];
+  // 用户ID
+  string uid = 4[(validate.rules).string.min_len = 1];
 }
 
-// OnlineHeartBeatResponse 心跳响应
-message OnlineHeartBeatResponse {
+// OnlineRefreshResponse 刷新在线连接响应
+message OnlineRefreshResponse {
 
 }

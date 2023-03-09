@@ -3,7 +3,6 @@ syntax = "proto3";
 package rockim.api.client.http.v1;
 
 option go_package = "rockimserver/apis/rockim/api/client/http/v1;v1";
-
 import "validate/validate.proto";
 
 message APIRequest {

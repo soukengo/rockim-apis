@@ -25,7 +25,23 @@ message ConfigFetchRequest {
   rockim.api.client.http.v1.APIRequest base = 1[(validate.rules).message.required = true];
 }
 
+// Socket 长连接配置
+message Socket{
+  // TCP tcp 配置
+  message TCP {
+    // tcp host
+    string address = 1;
+  }
+  // Websocket websocket 配置
+  message Websocket {
+    // websocket host
+    string address = 1;
+  }
+  TCP tcp = 1;
+  Websocket ws = 2;
+}
+
 // ConfigFetchResponse 获取全局配置响应
 message ConfigFetchResponse {
-
+  Socket socket = 1;
 }

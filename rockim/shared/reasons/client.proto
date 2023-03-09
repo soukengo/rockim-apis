@@ -14,3 +14,12 @@ message Client {
     SIGN_INVALID = 1;
   }
 }
+
+message Socket {
+  enum ErrorReason {
+    // 不支持的操作类型
+    OPERATION_NOT_SUPPORTED = 0;
+    // 数据包无效
+    PACKET_INVALID = 1;
+  }
+}

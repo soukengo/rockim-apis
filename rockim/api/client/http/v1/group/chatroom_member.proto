@@ -6,7 +6,6 @@ option go_package = "rockimserver/apis/rockim/api/client/http/v1/group;group";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "rockim/api/client/http/v1/group/types/group.proto";
 import "rockim/api/client/http/v1/http.proto";
 
 // 用户接口定义
