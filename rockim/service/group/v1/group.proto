@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package rockim.service.group.v1;
+
+option go_package = "rockimserver/apis/rockim/service/group/v1;v1";
+
+import "validate/validate.proto";
+import "rockim/service/service.proto";
+import "rockim/service/group/v1/types/group.proto";
+
+// GroupAPI 群组接口定义
+service GroupAPI {
+  // FindGroupId 查找群组ID
+  rpc FindGroupId (GroupIdFindRequest) returns (GroupIdFindResponse);
+  // Find 根据自定义id查找群组
+  rpc Find(GroupFindRequest) returns (GroupFindResponse);
+  // FindById 根据id查找群组
+  rpc FindById (GroupFindByIdRequest) returns (GroupFindByIdResponse);
+}
+
+// GroupIdFindRequest 查询群组id请求
+message GroupIdFindRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 自定义群组id
+  string custom_group_id = 2[(validate.rules).string.max_len = 64];
+}
+// GroupIdFindResponse 查询群组Id响应
+message GroupIdFindResponse {
+  string group_id = 1;
+}
+
+// GroupFindRequest 查询群组请求
+message GroupFindRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 自定义群组id
+  string custom_group_id = 2[(validate.rules).string.max_len = 64];
+}
+// GroupFindResponse 查询群组响应
+message GroupFindResponse {
+  rockim.service.group.v1.types.Group group = 1;
+}
+// GroupFindRequest 根据id查询群组请求
+message GroupFindByIdRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 群组id
+  string group_id = 2[(validate.rules).string.max_len = 64];
+}
+// GroupFindResponse 根据id查询群组响应
+message GroupFindByIdResponse {
+  rockim.service.group.v1.types.Group group = 1;
+}

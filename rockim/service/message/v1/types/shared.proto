@@ -12,8 +12,16 @@ import "rockim/shared/enums/conversation.proto";
 message ConversationID {
   // 会话类型
   rockim.shared.enums.Conversation.Category category = 1[(validate.rules).enum.defined_only = true];
-  // 会话目标ID（群聊为groupId，私聊为用户uid）
-  string target = 2[(validate.rules).string.min_len = 1];
+  // 值（群聊为groupId，私聊为用户uid1#用户uid2）
+  string value = 2[(validate.rules).string.min_len = 1];
+}
+
+// TargetID 目标ID
+message TargetID {
+  // 会话类型
+  rockim.shared.enums.Conversation.Category category = 1[(validate.rules).enum.defined_only = true];
+  // 值（群聊为customGroupId，私聊为用户account）
+  string value = 2[(validate.rules).string.min_len = 1];
 }
 
 

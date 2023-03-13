@@ -16,15 +16,14 @@ service MessageAPI {
   rpc Send (MessageSendRequest) returns (MessageSendResponse);
 }
 
-
 // MessageSendRequest 消息发送请求
 message MessageSendRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 发送者用户ID
   string uid = 2[(validate.rules).string.min_len = 1];
-  // 会话ID
-  rockim.service.message.v1.types.ConversationID conversation_id = 3;
+  // 发送的目标
+  rockim.service.message.v1.types.TargetID target = 3;
   // 客户端的消息ID
   string client_msg_id = 4;
   // 消息类型

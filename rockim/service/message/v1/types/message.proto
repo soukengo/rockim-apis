@@ -11,10 +11,12 @@ import "rockim/service/message/v1/types/shared.proto";
 
 // IMMessage 消息
 message IMMessage {
+  // 所属应用
+  string product_id = 1;
   // 会话ID
-  rockim.service.message.v1.types.ConversationID conversation_id = 1;
+  rockim.service.message.v1.types.ConversationID conversation_id = 2;
   // 消息主体
-  IMMessageBody body = 2;
+  IMMessageBody body = 3;
 }
 
 // IMMessageBody 消息主体
@@ -41,6 +43,22 @@ message IMMessageBody {
   rockim.shared.enums.Message.Status status = 10;
   // 消息版本号
   int64 version = 11;
+}
+
+
+// IMMessageRelation 消息关联
+message IMMessageRelation {
+  string id = 1;
+  // 所属应用
+  string product_id = 2;
+  // 会话ID
+  rockim.service.message.v1.types.ConversationID conversation_id = 3;
+  // 消息ID
+  string msg_id = 4;
+  // 用户ID
+  string uid = 5;
+  // 是否已删除
+  bool deleted = 6;
 }
 
 // IMMessageSender 消息发送者

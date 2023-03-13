@@ -10,10 +10,11 @@ option java_package = "cn.rockim.shared.enmus";
 message Conversation {
   // Category 会话类型
   enum Category {
+    UNKNOWN = 0;
     // 单聊
-    PERSON = 0;
+    PERSON = 1;
     // 群聊
-    GROUP = 1;
+    GROUP = 2;
   }
 
 }

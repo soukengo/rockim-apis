@@ -14,10 +14,6 @@ service ChatRoomAPI {
   rpc Create (ChatRoomCreateRequest) returns (ChatRoomCreateResponse);
   // Dismiss 解散聊天室
   rpc Dismiss (ChatRoomDismissRequest) returns (ChatRoomDismissResponse);
-  // FindGroupId 查找聊天室ID
-  rpc FindGroupId (ChatRoomGroupIdFindRequest) returns (ChatRoomGroupIdFindResponse);
-  // FindById 根据id查找聊天室
-  rpc FindById (ChatRoomFindByIdRequest) returns (ChatRoomFindByIdResponse);
 }
 
 // ChatRoomCreateRequest 创建聊天室请求
@@ -51,27 +47,4 @@ message ChatRoomDismissRequest {
 // ChatRoomDismissResponse 解散聊天室响应
 message ChatRoomDismissResponse {
 
-}
-
-// ChatRoomGroupIdFindRequest 查询聊天室id请求
-message ChatRoomGroupIdFindRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 自定义群组id
-  string custom_group_id = 2[(validate.rules).string.max_len = 64];
-}
-// ChatRoomGroupIdFindResponse 查询聊天室Id响应
-message ChatRoomGroupIdFindResponse {
-  string group_id = 1;
-}
-// ChatRoomFindRequest 根据id查询聊天室请求
-message ChatRoomFindByIdRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 群组id
-  string group_id = 2[(validate.rules).string.max_len = 64];
-}
-// ChatRoomFindResponse 根据id查询聊天室响应
-message ChatRoomFindByIdResponse {
-  rockim.service.group.v1.types.Group group = 1;
 }

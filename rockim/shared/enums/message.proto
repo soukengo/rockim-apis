@@ -30,9 +30,7 @@ message Message {
     FAILED = 1;
     // 发送成功
     SUCCESS = 2;
-    // 已删除
-    DELETED = 3;
     // 已撤回
-    REVOKED = 4;
+    REVOKED = 3;
   }
 }
