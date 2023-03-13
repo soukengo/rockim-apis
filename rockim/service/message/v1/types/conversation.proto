@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package rockim.service.message.v1.types;
+
+option go_package = "rockimserver/apis/rockim/service/message/v1/types;types";
+
+
+import "rockim/service/message/v1/types/shared.proto";
+
+// Conversation 会话
+message Conversation {
+  // 会话ID
+  rockim.service.message.v1.types.ConversationID conversation_id = 1;
+}
+
+

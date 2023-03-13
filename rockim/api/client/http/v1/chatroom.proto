@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package rockim.api.client.http.v1.group;
+package rockim.api.client.http.v1;
 
-option go_package = "rockimserver/apis/rockim/api/client/http/v1/group;group";
+option go_package = "rockimserver/apis/rockim/api/client/http/v1;v1";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "rockim/api/client/http/v1/group/types/group.proto";
+import "rockim/api/client/http/v1/types/group.proto";
 import "rockim/api/client/http/v1/http.proto";
 
 // 聊天室接口定义
@@ -31,5 +31,5 @@ message ChatRoomFindRequest {
 
 // ChatRoomFindResponse 聊天室查找响应
 message ChatRoomFindResponse {
-  rockim.api.client.http.v1.group.types.Group group = 1;
+  rockim.api.client.http.v1.types.Group group = 1;
 }

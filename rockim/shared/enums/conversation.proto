@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package rockim.shared.enums;
+
+option go_package = "rockimserver/apis/rockim/shared/enums";
+option java_multiple_files = true;
+option java_package = "cn.rockim.shared.enmus";
+
+// Message 消息相关枚举
+message Conversation {
+  // Category 会话类型
+  enum Category {
+    // 单聊
+    PERSON = 0;
+    // 群聊
+    GROUP = 1;
+  }
+
+}

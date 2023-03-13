@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package rockim.api.client.http.v1.user;
+package rockim.api.client.http.v1;
 
-option go_package = "rockimserver/apis/rockim/api/client/http/v1/user;user";
+option go_package = "rockimserver/apis/rockim/api/client/http/v1;v1";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
-import "rockim/api/client/http/v1/user/types/user.proto";
+import "rockim/api/client/http/v1/types/user.proto";
 import "rockim/api/client/http/v1/http.proto";
 
 // 用户接口定义
@@ -30,5 +30,5 @@ message UserFindRequest {
 
 // UserFindResponse 用户查找响应
 message UserFindResponse {
-  rockim.api.client.http.v1.user.types.User user = 1;
+  rockim.api.client.http.v1.types.User user = 1;
 }

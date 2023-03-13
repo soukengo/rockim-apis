@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package rockim.api.client.http.v1.auth;
+package rockim.api.client.http.v1;
 
-option go_package = "rockimserver/apis/rockim/api/client/http/v1/auth;auth";
+option go_package = "rockimserver/apis/rockim/api/client/http/v1;v1";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
