@@ -28,7 +28,7 @@ message UserRegisterRequest {
   // 用户名称
   string name = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
   // 头像地址
-  string avatar_url = 4[(validate.rules).string.max_len = 256, (validate.rules).string.uri = true];
+  string avatar_url = 4[(validate.rules).string.max_len = 256];
   // 用户自定义字段
   map<string, string> fields = 5;
 }

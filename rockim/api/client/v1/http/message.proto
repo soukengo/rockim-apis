@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package rockim.api.client.v1.http;
+
+option go_package = "rockimserver/apis/rockim/api/client/v1/http;http";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+import "rockim/api/client/v1/http/http.proto";
+import "rockim/api/client/v1/types/message.proto";
+import "rockim/shared/enums/message.proto";
+
+
+// 消息接口定义
+service MessageAPI {
+  // Send 发送消息
+  rpc Send(MessageSendRequest)returns (MessageSendResponse){
+    option (google.api.http) = {
+      post: "/client/v1/message/send",
+      body: "*"
+    };
+  }
+}
+
+// MessageSendRequest 发送消息请求
+message MessageSendRequest {
+  // 基本参数
+  rockim.api.client.v1.http.APIRequest base = 1[(validate.rules).message.required = true];
+  // 发送的目标
+  rockim.api.client.v1.types.TargetID target = 2[(validate.rules).message.required = true];
+  // 客户端的消息ID
+  string client_msg_id = 3[(validate.rules).string.min_len = 1];
+  // 消息类型
+  rockim.shared.enums.Message.MessageType message_type = 4[(validate.rules).enum.defined_only = true];
+  // 消息内容
+  bytes content = 5[(validate.rules).bytes.min_len = 1];
+  // 透传数据
+  map<string, string> payload = 6;
+}
+
+// MessageSendResponse 发送消息响应
+message MessageSendResponse {
+
+}

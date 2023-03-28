@@ -30,7 +30,7 @@ message UserRegisterRequest {
   // 用户名称
   string name = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
   // 头像地址
-  string avatar_url = 4[(validate.rules).string.max_len = 256, (validate.rules).string.uri = true];
+  string avatar_url = 4[(validate.rules).string.max_len = 256];
   // 客户自定义字段
   map<string, string> fields = 5[(validate.rules).map.max_pairs = 100, (validate.rules).map.keys.string.max_len = 64, (validate.rules).map.values.string.max_len = 512];
 }

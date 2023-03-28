@@ -23,13 +23,13 @@ message MessageSendRequest {
   // 发送者用户ID
   string uid = 2[(validate.rules).string.min_len = 1];
   // 发送的目标
-  rockim.service.message.v1.types.TargetID target = 3;
+  rockim.service.message.v1.types.TargetID target = 3[(validate.rules).message.required = true];
   // 客户端的消息ID
-  string client_msg_id = 4;
+  string client_msg_id = 4[(validate.rules).string.min_len = 1];
   // 消息类型
-  rockim.shared.enums.Message.MessageType message_type = 5;
+  rockim.shared.enums.Message.MessageType message_type = 5[(validate.rules).enum.defined_only = true];
   // 消息内容
-  string content = 6;
+  bytes content = 6[(validate.rules).bytes.min_len = 1];
   // 透传数据
   map<string, string> payload = 7;
 }

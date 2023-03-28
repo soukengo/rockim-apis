@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package rockim.api.client.socket.v1;
 
-option go_package = "rockimserver/apis/rockim/api/client/socket/v1;v1";
+option go_package = "rockimserver/apis/rockim/api/client/v1/socket;socket";
 
 import "validate/validate.proto";
 
-import "rockim/api/client/socket/v1/options.proto";
+import "rockim/api/client/v1/socket/options.proto";
 
 
 // ChannelAPI 长连接接口定义

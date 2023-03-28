@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package rockim.service.job.v1;
+
+option go_package = "rockimserver/apis/rockim/service/job/v1;v1";
+
+import "google/protobuf/empty.proto";
+
+import "rockim/service/job/v1/types/job.proto";
+
+
+// MessageTask 消息相关任务
+service MessageTask {
+  // 消息推送
+  rpc Push (MessagePushRequest) returns (google.protobuf.Empty);
+}
+
+// 消息推送请求
+message MessagePushRequest {
+  repeated rockim.service.job.v1.types.Message list = 1;
+}

@@ -13,41 +13,42 @@ import "rockim/service/message/v1/types/shared.proto";
 message IMMessage {
   // 所属应用
   string product_id = 1;
+  // 消息ID
+  string msg_id = 2;
   // 会话ID
-  rockim.service.message.v1.types.ConversationID conversation_id = 2;
+  rockim.service.message.v1.types.ConversationID conversation_id = 3;
   // 消息主体
-  IMMessageBody body = 3;
+  IMMessageBody body = 4;
+  // 消息序号
+  int64 sequence = 5;
+  // 消息状态
+  rockim.shared.enums.Message.Status status = 6;
+  // 消息版本号
+  int64 version = 7;
 }
 
 // IMMessageBody 消息主体
 message IMMessageBody {
-  // 消息ID
-  string msg_id = 1;
   // 消息发送时间
-  int64 timestamp = 2;
+  int64 timestamp = 1;
   // 消息发送者
-  IMMessageSender sender = 3;
+  IMMessageSender sender = 2;
   // 客户端的消息ID
-  string client_msg_id = 4;
+  string client_msg_id = 3;
   // 消息类型
-  rockim.shared.enums.Message.MessageType message_type = 5;
+  rockim.shared.enums.Message.MessageType message_type = 4;
   // 消息内容
-  string content = 6;
+  bytes content = 5;
   // 透传数据
-  map<string, string> payload = 7;
+  map<string, string> payload = 6;
   // 是否需要已读回执
-  bool need_receipt = 8;
-  // 消息序号
-  int64 sequence = 9;
-  // 消息状态
-  rockim.shared.enums.Message.Status status = 10;
-  // 消息版本号
-  int64 version = 11;
+  bool need_receipt = 7;
 }
 
 
 // IMMessageRelation 消息关联
 message IMMessageRelation {
+  // ID
   string id = 1;
   // 所属应用
   string product_id = 2;

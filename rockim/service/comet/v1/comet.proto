@@ -25,7 +25,7 @@ message PushRequest {
   // 推送类型
   rockim.shared.enums.Network.PushOperation operation = 2[(validate.rules).enum.defined_only = true];
   // 连接id
-  string channel_id = 3[(validate.rules).string.min_len = 1];
+  repeated string channel_ids = 3[(validate.rules).repeated.min_items = 1];
   // 推送内容
   bytes body = 4;
 }

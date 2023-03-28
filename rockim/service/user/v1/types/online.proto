@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package rockim.service.user.v1.types;
+
+option go_package = "rockimserver/apis/rockim/service/user/v1/types;types";
+
+// OnlineChannel 在线连接
+message OnlineChannel {
+  // 服务器ID
+  string server_id = 1;
+  // 连接ID
+  string channel_id = 2;
+}
+
+// OnlineUser 在线用户
+message OnlineUser {
+  // 用户ID
+  string uid = 1;
+  // 连接列表
+  repeated OnlineChannel channels = 2;
+}
