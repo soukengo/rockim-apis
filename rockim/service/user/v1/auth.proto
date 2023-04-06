@@ -21,7 +21,7 @@ message AuthCodeRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 用户账户名，由接入方指定
-  string account = 3[(validate.rules).string.min_len = 1];
+  string account = 2[(validate.rules).string.min_len = 1];
 }
 
 // AuthCodeResponse 获取授权码响应

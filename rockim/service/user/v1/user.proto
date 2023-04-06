@@ -46,7 +46,7 @@ message UserFindRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 用户ID
-  string uid = 3[(validate.rules).string.min_len = 1];
+  string uid = 2[(validate.rules).string.min_len = 1];
 }
 
 // UserFindResponse 查询用户响应
@@ -59,7 +59,7 @@ message UserFindByAccountRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 用户账户名，由接入方指定
-  string account = 3[(validate.rules).string.min_len = 1];
+  string account = 2[(validate.rules).string.min_len = 1];
 }
 
 // UserFindByAccountResponse 根据账户查询用户响应
@@ -72,7 +72,7 @@ message UserIdFindRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 用户账户名，由接入方指定
-  string account = 3[(validate.rules).string.min_len = 1];
+  string account = 2[(validate.rules).string.min_len = 1];
 }
 
 // UserIdFindResponse 查询用户ID响应
