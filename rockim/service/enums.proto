@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package rockim.service;
+
+option go_package = "rockimserver/apis/rockim/service;service";
+
+// MQ 消息中间件
+message MQ {
+  // Topic topic
+  enum Topic {
+    // 消息投递
+    MESSAGE_PUSH = 0;
+  }
+}
