@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package rockim.api.client.v1.protocol.socket;
+
+option go_package = "rockimserver/apis/rockim/api/client/v1/protocol/socket;socket";
+option csharp_namespace = "RockIM.Api.Client.V1.Protocol.Socket";
+
+import "google/protobuf/descriptor.proto";
+import "rockim/api/client/v1/protocol/socket/protocol.proto";
+
+extend google.protobuf.MethodOptions {
+  RequestOptions request = 3001;
+}
+
+message RequestOptions {
+  rockim.api.client.v1.protocol.socket.Operation operation = 1;
+}

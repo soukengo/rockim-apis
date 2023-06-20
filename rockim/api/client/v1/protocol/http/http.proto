@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package rockim.api.client.v1.protocol.http;
+
+option go_package = "rockimserver/apis/rockim/api/client/v1/protocol/http;http";
+option csharp_namespace = "RockIM.Api.Client.V1.Protocol.Http";
+
+import "validate/validate.proto";
+
+message APIRequest {
+  // 所属应用
+  string product_id = 1[(validate.rules).string.min_len = 1];
+}

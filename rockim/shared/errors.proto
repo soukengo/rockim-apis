@@ -3,6 +3,10 @@ syntax = "proto3";
 package rockim.shared;
 option go_package = "rockimserver/apis/rockim/shared";
 
+option java_package = "cn.rockim.shared";
+
+option csharp_namespace = "RockIM.Shared";
+
 // Error 错误结构体
 message Error {
   // 状态码 同http status code

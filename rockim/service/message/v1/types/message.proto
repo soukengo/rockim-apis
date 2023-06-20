@@ -17,32 +17,34 @@ message IMMessage {
   string msg_id = 2;
   // 会话ID
   rockim.service.message.v1.types.ConversationID conversation_id = 3;
+  // 消息发送者
+  IMMessageSender sender = 4;
+  // 来源目标ID
+  rockim.service.message.v1.types.TargetID from = 5;
+  // 接收目标ID
+  rockim.service.message.v1.types.TargetID to = 6;
   // 消息主体
-  IMMessageBody body = 4;
+  IMMessageBody body = 7;
   // 消息序号
-  int64 sequence = 5;
+  int64 sequence = 8;
   // 消息状态
-  rockim.shared.enums.Message.Status status = 6;
+  rockim.shared.enums.Message.Status status = 9;
   // 消息版本号
-  int64 version = 7;
+  int64 version = 10;
 }
 
 // IMMessageBody 消息主体
 message IMMessageBody {
   // 消息发送时间
   int64 timestamp = 1;
-  // 消息发送者
-  IMMessageSender sender = 2;
   // 客户端的消息ID
-  string client_msg_id = 3;
+  string client_msg_id = 2;
   // 消息类型
-  rockim.shared.enums.Message.MessageType message_type = 4;
+  rockim.shared.enums.Message.MessageType message_type = 3;
   // 消息内容
-  bytes content = 5;
+  bytes content = 4;
   // 透传数据
-  map<string, string> payload = 6;
-  // 是否需要已读回执
-  bool need_receipt = 7;
+  map<string, string> payload = 5;
 }
 
 

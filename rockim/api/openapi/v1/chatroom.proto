@@ -24,7 +24,7 @@ message ChatRoomCreateRequest {
   // 基本参数
   rockim.api.openapi.v1.APIRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组id
-  string custom_group_id = 2[(validate.rules).string.pattern = "^[a-zA-Z0-9_.-]{0,64}$"];
+  string biz_id = 2[(validate.rules).string.pattern = "^[a-zA-Z0-9_.-]{0,64}$"];
   // 群组名称
   string name = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
   // 图标
@@ -38,5 +38,5 @@ message ChatRoomCreateRequest {
 // ChatRoomCreateResponse 创建聊天室响应
 message ChatRoomCreateResponse {
   // 自定义群组ID
-  string custom_group_id = 3;
+  string biz_id = 3;
 }

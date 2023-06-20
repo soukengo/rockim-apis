@@ -3,6 +3,7 @@ syntax = "proto3";
 package rockim.api.client.v1.types;
 
 option go_package = "rockimserver/apis/rockim/api/client/v1/types;types";
+option csharp_namespace = "RockIM.Api.Client.V1.Types";
 
 import "rockim/shared/enums/group.proto";
 
@@ -13,7 +14,7 @@ message Group {
   // 所属应用
   string product_id = 2;
   // 自定义群组ID，由接入方指定（不填的话SDK服务端自动生成）
-  string custom_group_id = 3;
+  string biz_id = 3;
   // 群组名称
   string name = 4;
   // 图标
@@ -32,8 +33,8 @@ message GroupMember {
   string product_id = 2;
   // 群组id
   string group_id = 3;
-  // 用户ID
-  string uid = 4;
+  // 用户账号
+  string account = 4;
   // 角色
   rockim.shared.enums.Group.MemberRole role = 5;
   // 自定义字段

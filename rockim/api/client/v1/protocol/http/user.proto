@@ -1,13 +1,14 @@
 syntax = "proto3";
 
-package rockim.api.client.v1.http;
+package rockim.api.client.v1.protocol.http;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/http;http";
+option go_package = "rockimserver/apis/rockim/api/client/v1/protocol/http;http";
+option csharp_namespace = "RockIM.Api.Client.V1.Protocol.Http";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
 import "rockim/api/client/v1/types/user.proto";
-import "rockim/api/client/v1/http/http.proto";
+import "rockim/api/client/v1/protocol/http/http.proto";
 
 // 用户接口定义
 service UserAPI {
@@ -23,7 +24,7 @@ service UserAPI {
 // UserFindRequest 用户查找请求
 message UserFindRequest {
   // 基本参数
-  rockim.api.client.v1.http.APIRequest base = 1[(validate.rules).message.required = true];
+  rockim.api.client.v1.protocol.http.APIRequest base = 1[(validate.rules).message.required = true];
   // 用户账户名，由接入方指定
   string account = 2[(validate.rules).string.min_len = 1];
 }

@@ -5,6 +5,7 @@ package rockim.shared.enums;
 option go_package = "rockimserver/apis/rockim/shared/enums";
 option java_multiple_files = true;
 option java_package = "cn.rockim.shared.enmus";
+option csharp_namespace = "RockIM.Shared.Enums";
 
 // Message 消息相关枚举
 message Message {
@@ -32,5 +33,17 @@ message Message {
     SUCCESS = 2;
     // 已撤回
     REVOKED = 3;
+  }
+}
+
+// MessageTarget 消息目标
+message MessageTarget {
+  enum Category {
+    // 未知
+    UNKNOWN = 0;
+    // 用户
+    PERSON = 1;
+    // 群
+    GROUP = 2;
   }
 }

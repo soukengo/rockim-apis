@@ -1,13 +1,15 @@
 syntax = "proto3";
 
-package rockim.api.client.v1.http;
+package rockim.api.client.v1.protocol.http;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/http;http";
+option go_package = "rockimserver/apis/rockim/api/client/v1/protocol/http;http";
+option csharp_namespace = "RockIM.Api.Client.V1.Protocol.Http";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
 import "rockim/api/client/v1/types/group.proto";
-import "rockim/api/client/v1/http/http.proto";
+import "rockim/api/client/v1/protocol/http/http.proto";
+
 
 // 聊天室接口定义
 service ChatRoomAPI {
@@ -24,9 +26,9 @@ service ChatRoomAPI {
 // ChatRoomFindRequest 聊天室查找请求
 message ChatRoomFindRequest {
   // 基本参数
-  rockim.api.client.v1.http.APIRequest base = 1[(validate.rules).message.required = true];
+  rockim.api.client.v1.protocol.http.APIRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组ID
-  string custom_group_id = 2[(validate.rules).string.min_len = 1];
+  string biz_id = 2[(validate.rules).string.min_len = 1];
 }
 
 // ChatRoomFindResponse 聊天室查找响应

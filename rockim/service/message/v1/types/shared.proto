@@ -6,21 +6,21 @@ option go_package = "rockimserver/apis/rockim/service/message/v1/types;types";
 
 import "validate/validate.proto";
 
-import "rockim/shared/enums/conversation.proto";
+import "rockim/shared/enums/message.proto";
 
 // ConversationID 会话ID
 message ConversationID {
-  // 会话类型
-  rockim.shared.enums.Conversation.Category category = 1[(validate.rules).enum.defined_only = true];
+  // 目标类型
+  rockim.shared.enums.MessageTarget.Category category = 1[(validate.rules).enum.defined_only = true];
   // 值（群聊为groupId，私聊为用户uid1#用户uid2）
   string value = 2[(validate.rules).string.min_len = 1];
 }
 
 // TargetID 目标ID
 message TargetID {
-  // 会话类型
-  rockim.shared.enums.Conversation.Category category = 1[(validate.rules).enum.defined_only = true];
-  // 值（群聊为customGroupId，私聊为用户account）
+  // 目标类型
+  rockim.shared.enums.MessageTarget.Category category = 1[(validate.rules).enum.defined_only = true];
+  // 值（群聊为bizId，私聊为用户account）
   string value = 2[(validate.rules).string.min_len = 1];
 }
 

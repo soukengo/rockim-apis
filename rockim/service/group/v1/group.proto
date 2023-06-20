@@ -23,7 +23,7 @@ message GroupIdFindRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组id
-  string custom_group_id = 2[(validate.rules).string.max_len = 64];
+  string biz_id = 2[(validate.rules).string.max_len = 64];
 }
 // GroupIdFindResponse 查询群组Id响应
 message GroupIdFindResponse {
@@ -35,7 +35,7 @@ message GroupFindRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组id
-  string custom_group_id = 2[(validate.rules).string.max_len = 64];
+  string biz_id = 2[(validate.rules).string.max_len = 64];
 }
 // GroupFindResponse 查询群组响应
 message GroupFindResponse {

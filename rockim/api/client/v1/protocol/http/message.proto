@@ -1,13 +1,14 @@
 syntax = "proto3";
 
-package rockim.api.client.v1.http;
+package rockim.api.client.v1.protocol.http;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/http;http";
+option go_package = "rockimserver/apis/rockim/api/client/v1/protocol/http;http";
+option csharp_namespace = "RockIM.Api.Client.V1.Protocol.Http";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
 
-import "rockim/api/client/v1/http/http.proto";
+import "rockim/api/client/v1/protocol/http/http.proto";
 import "rockim/api/client/v1/types/message.proto";
 import "rockim/shared/enums/message.proto";
 
@@ -26,7 +27,7 @@ service MessageAPI {
 // MessageSendRequest 发送消息请求
 message MessageSendRequest {
   // 基本参数
-  rockim.api.client.v1.http.APIRequest base = 1[(validate.rules).message.required = true];
+  rockim.api.client.v1.protocol.http.APIRequest base = 1[(validate.rules).message.required = true];
   // 发送的目标
   rockim.api.client.v1.types.TargetID target = 2[(validate.rules).message.required = true];
   // 客户端的消息ID

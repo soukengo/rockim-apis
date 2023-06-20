@@ -3,6 +3,7 @@ syntax = "proto3";
 package rockim.api.client.v1.types;
 
 option go_package = "rockimserver/apis/rockim/api/client/v1/types;types";
+option csharp_namespace = "RockIM.Api.Client.V1.Types";
 
 import "rockim/shared/enums/user.proto";
 

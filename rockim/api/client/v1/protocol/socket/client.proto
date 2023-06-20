@@ -1,25 +1,26 @@
 syntax = "proto3";
 
-package rockim.api.client.socket.v1;
+package rockim.api.client.v1.protocol.socket;
 
-option go_package = "rockimserver/apis/rockim/api/client/v1/socket;socket";
+option go_package = "rockimserver/apis/rockim/api/client/v1/protocol/socket;socket";
+option csharp_namespace = "RockIM.Api.Client.V1.Protocol.Socket";
 
 import "validate/validate.proto";
 
-import "rockim/api/client/v1/socket/options.proto";
+import "rockim/api/client/v1/protocol/socket/options.proto";
 
 
 // ChannelAPI 长连接接口定义
 service ChannelAPI {
   // Auth 长连接认证
   rpc Auth (AuthRequest) returns (AuthResponse){
-    option (rockim.api.client.socket.v1.request) = {
+    option (rockim.api.client.v1.protocol.socket.request) = {
       operation: AUTH,
     };
   }
   // HeartBeat 长连接心跳
   rpc HeartBeat (HeartBeatRequest) returns (HeartBeatResponse){
-    option (rockim.api.client.socket.v1.request) = {
+    option (rockim.api.client.v1.protocol.socket.request) = {
       operation: HEARTBEAT,
     };
   }

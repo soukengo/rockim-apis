@@ -5,6 +5,7 @@ package rockim.shared.enums;
 option go_package = "rockimserver/apis/rockim/shared/enums";
 option java_multiple_files = true;
 option java_package = "cn.rockim.shared.enmus";
+option csharp_namespace = "RockIM.Shared.Enums";
 
 // User 用户相关枚举
 message User {
@@ -14,5 +15,9 @@ message User {
     NORMAL = 0;
     // 已删除
     DELETED = 1;
+  }
+  // SystemAccount 系统账号
+  enum SystemAccount {
+    ROCKIM_SYSTEM = 0;
   }
 }
