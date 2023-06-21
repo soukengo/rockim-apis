@@ -28,7 +28,7 @@ message ChatRoomFindRequest {
   // 基本参数
   rockim.api.client.v1.protocol.http.APIRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组ID
-  string biz_id = 2[(validate.rules).string.min_len = 1];
+  string custom_group_id = 2[(validate.rules).string.min_len = 1];
 }
 
 // ChatRoomFindResponse 聊天室查找响应

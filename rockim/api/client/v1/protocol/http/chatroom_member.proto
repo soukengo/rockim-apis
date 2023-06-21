@@ -32,7 +32,7 @@ message ChatRoomJoinRequest {
   // 基本参数
   rockim.api.client.v1.protocol.http.APIRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组ID
-  string biz_id = 2[(validate.rules).string.min_len = 1];
+  string custom_group_id = 2[(validate.rules).string.min_len = 1];
 }
 
 // ChatRoomJoinResponse 聊天室加入响应
@@ -44,7 +44,7 @@ message ChatRoomQuitRequest {
   // 基本参数
   rockim.api.client.v1.protocol.http.APIRequest base = 1[(validate.rules).message.required = true];
   // 自定义群组ID
-  string biz_id = 3[(validate.rules).string.min_len = 1];
+  string custom_group_id = 3[(validate.rules).string.min_len = 1];
 }
 
 // ChatRoomQuitResponse 聊天室退出响应

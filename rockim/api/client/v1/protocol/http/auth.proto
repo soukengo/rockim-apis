@@ -8,6 +8,7 @@ option csharp_namespace = "RockIM.Api.Client.V1.Protocol.Http";
 import "google/api/annotations.proto";
 import "validate/validate.proto";
 import "rockim/api/client/v1/protocol/http/http.proto";
+import "rockim/api/client/v1/types/user.proto";
 
 
 // 授权接口定义
@@ -35,6 +36,8 @@ message LoginResponse {
   string token = 1;
   // 失效时间（时间戳）
   int64 expire_time = 2;
+  // 当前登录用户的信息
+  rockim.api.client.v1.types.User user = 3;
 }
 
 

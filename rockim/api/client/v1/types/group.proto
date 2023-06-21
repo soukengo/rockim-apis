@@ -14,7 +14,7 @@ message Group {
   // 所属应用
   string product_id = 2;
   // 自定义群组ID，由接入方指定（不填的话SDK服务端自动生成）
-  string biz_id = 3;
+  string custom_group_id = 3;
   // 群组名称
   string name = 4;
   // 图标

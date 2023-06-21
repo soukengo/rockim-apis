@@ -7,6 +7,8 @@ option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
 import "rockim/service/service.proto";
 import "validate/validate.proto";
 
+import "rockim/service/user/v1/types/user.proto";
+
 // 授权接口定义
 service AuthAPI {
   // 获取授权码（服务端调用）
@@ -46,6 +48,8 @@ message LoginResponse {
   string token = 1;
   // 失效时间（时间戳）
   int64 expire_time = 2;
+  // 用户信息
+  rockim.service.user.v1.types.User user = 3;
 }
 
 // TokenCheckRequest 令牌验证请求

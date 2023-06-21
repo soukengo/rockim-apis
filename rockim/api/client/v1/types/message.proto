@@ -13,7 +13,7 @@ import "rockim/shared/enums/message.proto";
 message TargetID {
   // 目标类型
   rockim.shared.enums.MessageTarget.Category category = 1[(validate.rules).enum.defined_only = true];
-  // 值（群聊为bizId，私聊为用户account）
+  // 值（群聊为customGroupId，私聊为用户account）
   string value = 2[(validate.rules).string.min_len = 1];
 }
 
