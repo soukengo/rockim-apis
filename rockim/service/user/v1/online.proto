@@ -7,7 +7,7 @@ option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
 import "rockim/service/service.proto";
 import "validate/validate.proto";
 
-// 在线状态接口
+// OnlineAPI 在线状态接口
 service OnlineAPI {
   // Add 添加在线连接
   rpc Add (OnlineAddRequest) returns (OnlineAddResponse);
@@ -62,4 +62,12 @@ message OnlineRefreshRequest {
 // OnlineRefreshResponse 刷新在线连接响应
 message OnlineRefreshResponse {
 
+}
+
+// OnlineRoomListRequest 获取房间列表请求
+message OnlineRoomListRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 用户ID
+  string uid = 2[(validate.rules).string.min_len = 1];
 }

@@ -6,8 +6,6 @@ option go_package = "rockimserver/apis/rockim/service/group/v1;v1";
 
 import "validate/validate.proto";
 import "rockim/service/service.proto";
-import "rockim/service/group/v1/types/group.proto";
-import "rockim/shared/paginate.proto";
 
 
 // ChatRoomMemberAPI 聊天室成员接口定义
@@ -16,14 +14,6 @@ service ChatRoomMemberAPI {
   rpc Join (ChatRoomJoinRequest) returns (ChatRoomJoinResponse);
   // Quit 退出聊天室
   rpc Quit (ChatRoomQuitRequest) returns (ChatRoomQuitResponse);
-  // IsMember 判断是否为聊天室成员
-  rpc IsMember (ChatRoomMemberCheckRequest) returns (ChatRoomMemberCheckResponse);
-  // Find 获取成员信息
-  rpc Find (ChatRoomMemberFindRequest) returns (ChatRoomMemberFindResponse);
-  // List 批量获取成员信息
-  rpc List (ChatRoomMemberListRequest) returns (ChatRoomMemberListResponse);
-  // PaginateUid 获取成员ID列表
-  rpc PaginateUid (ChatRoomMemberIdPaginateRequest) returns (ChatRoomMemberIdPaginateResponse);
 }
 
 // ChatRoomJoinRequest 加入聊天室请求
@@ -52,67 +42,3 @@ message ChatRoomQuitRequest {
 message ChatRoomQuitResponse {
 
 }
-
-// ChatRoomMemberCheckRequest 判断是否为聊天室成员请求
-message ChatRoomMemberCheckRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 群组id
-  string group_id = 2[(validate.rules).string.min_len = 1];
-  // 用户账号
-  string uid = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
-}
-
-// ChatRoomMemberCheckResponse 判断是否为聊天室成员响应
-message ChatRoomMemberCheckResponse {
-  bool is_member = 1;
-}
-
-// ChatRoomMemberFindRequest 获取成员信息请求
-message ChatRoomMemberFindRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 群组id
-  string group_id = 2[(validate.rules).string.min_len = 1];
-  // 用户账号
-  string uid = 3[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
-}
-
-// ChatRoomMemberCheckResponse 获取成员信息响应
-message ChatRoomMemberFindResponse {
-  rockim.service.group.v1.types.GroupMember member = 1;
-}
-
-// ChatRoomMemberListRequest 获取成员列表请求
-message ChatRoomMemberListRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 群组id
-  string group_id = 2[(validate.rules).string.min_len = 1];
-  // 用户id列表
-  repeated string uids = 3;
-}
-
-// ChatRoomMemberListResponse 获取成员列表响应
-message ChatRoomMemberListResponse {
-  // 成员列表
-  repeated rockim.service.group.v1.types.GroupMember members = 1;
-}
-// ChatRoomMemberIdPaginateRequest 分页获取成员id列表请求
-message ChatRoomMemberIdPaginateRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 群组id
-  string group_id = 2[(validate.rules).string.min_len = 1];
-  // 分页参数
-  rockim.shared.Paginating paginate = 3[(validate.rules).message.required = true];
-}
-
-// ChatRoomMemberIdPaginateResponse 分页获取成员id列表响应
-message ChatRoomMemberIdPaginateResponse {
-  // 成员列表
-  repeated string members = 1;
-  // 分页数据
-  rockim.shared.Paginated paginate = 2;
-}
-

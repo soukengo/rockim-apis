@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package rockim.service.group.v1;
+
+option go_package = "rockimserver/apis/rockim/service/group/v1;v1";
+
+import "validate/validate.proto";
+import "rockim/service/service.proto";
+import "rockim/service/group/v1/types/group.proto";
+import "rockim/shared/paginate.proto";
+import "rockim/shared/enums/group.proto";
+
+
+// GroupMemberAPI 群组成员接口定义
+service GroupMemberAPI {
+  // IsMember 判断是否为聊天室成员
+  rpc IsMember (GroupMemberCheckRequest) returns (GroupMemberCheckResponse);
+  // Find 获取成员信息
+  rpc Find (GroupMemberFindRequest) returns (GroupMemberFindResponse);
+  // List 批量获取成员信息
+  rpc List (GroupMemberListRequest) returns (GroupMemberListResponse);
+  // PaginateUid 获取成员ID列表
+  rpc PaginateUid (GroupMemberIdPaginateRequest) returns (GroupMemberIdPaginateResponse);
+  // 根据成员获取群组id列表
+  rpc ListGroupIdByUid (GroupIdListByUidRequest) returns (GroupIdListByUidResponse);
+}
+
+
+
+// GroupMemberCheckRequest 判断是否为聊天室成员请求
+message GroupMemberCheckRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 群组类型
+  rockim.shared.enums.Group.Category category = 2[(validate.rules).enum.defined_only = true];
+  // 群组id
+  string group_id = 3[(validate.rules).string.min_len = 1];
+  // 用户账号
+  string uid = 4[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
+}
+
+// GroupMemberCheckResponse 判断是否为聊天室成员响应
+message GroupMemberCheckResponse {
+  bool is_member = 1;
+}
+
+// GroupMemberFindRequest 获取成员信息请求
+message GroupMemberFindRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 群组类型
+  rockim.shared.enums.Group.Category category = 2[(validate.rules).enum.defined_only = true];
+  // 群组id
+  string group_id = 3[(validate.rules).string.min_len = 1];
+  // 用户账号
+  string uid = 4[(validate.rules).string.min_len = 1, (validate.rules).string.max_len = 64];
+}
+
+// GroupMemberCheckResponse 获取成员信息响应
+message GroupMemberFindResponse {
+  rockim.service.group.v1.types.GroupMember member = 1;
+}
+
+// GroupMemberListRequest 获取成员列表请求
+message GroupMemberListRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 群组类型
+  rockim.shared.enums.Group.Category category = 2[(validate.rules).enum.defined_only = true];
+  // 群组id
+  string group_id = 3[(validate.rules).string.min_len = 1];
+  // 用户id列表
+  repeated string uids = 4;
+}
+
+// GroupMemberListResponse 获取成员列表响应
+message GroupMemberListResponse {
+  // 成员列表
+  repeated rockim.service.group.v1.types.GroupMember members = 1;
+}
+// GroupMemberIdPaginateRequest 分页获取成员id列表请求
+message GroupMemberIdPaginateRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 群组类型
+  rockim.shared.enums.Group.Category category = 2[(validate.rules).enum.defined_only = true];
+  // 群组id
+  string group_id = 3[(validate.rules).string.min_len = 1];
+  // 分页参数
+  rockim.shared.Paginating paginate = 4[(validate.rules).message.required = true];
+}
+
+// GroupMemberIdPaginateResponse 分页获取成员id列表响应
+message GroupMemberIdPaginateResponse {
+  // 成员列表
+  repeated string members = 1;
+  // 分页数据
+  rockim.shared.Paginated paginate = 2;
+}
+
+// GroupIdListByUidRequest 根据成员获取群组id列表请求
+message GroupIdListByUidRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 用户id
+  string uid = 2[(validate.rules).string.min_len = 1];
+}
+
+// GroupIdListByUidResponse 根据成员获取群组id列表响应
+message GroupIdListByUidResponse {
+  // 群组id列表
+  repeated string group_ids = 1;
+}

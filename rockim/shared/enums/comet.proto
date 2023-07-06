@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package rockim.shared.enums;
+
+option go_package = "rockimserver/apis/rockim/shared/enums";
+option java_multiple_files = true;
+option java_package = "cn.rockim.shared.enmus";
+option csharp_namespace = "RockIM.Shared.Enums";
+
+// Comet 长连接相关枚举
+message Comet {
+  // RoomType 房间类型
+  enum RoomType {
+    // 群组
+    Group = 0;
+  }
+}
