@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package rockim.service.comet.v1.types;
+
+option go_package = "rockimserver/apis/rockim/service/comet/v1/types;types";
+
+import "rockim/shared/enums/comet.proto";
+
+// Room 房间
+message Room {
+  rockim.shared.enums.Comet.RoomType room_type = 1;
+  string biz_id = 2;
+}
+
+// Message 消息
+message Message {
+  // 消息类型
+  rockim.shared.enums.Comet.DataType data_type = 1;
+  // 控制消息
+  ControlMessage control = 2;
+  // 推送消息
+  PushMessage push = 3;
+}
+
+message PushMessage{
+  rockim.shared.enums.Comet.PushOperation operation = 1;
+  // 推送内容
+  bytes body = 2;
+}
+
+message ControlMessage{
+  // ControlType 控制类型
+  enum ControlType {
+    // 未知
+    UNKNOWN = 0;
+    // 加入房间
+    ROOM_JOIN = 1;
+    // 退出房间
+    ROOM_QUIT = 2;
+    // 踢下线
+    KICK_OFF = 3;
+  }
+  // 控制类型
+  ControlType control_type = 2;
+  // 控制内容
+  bytes body = 4;
+}

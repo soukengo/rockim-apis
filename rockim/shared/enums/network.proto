@@ -19,14 +19,4 @@ message Network {
     PUSH = 2;
   }
 
-  enum PushOperation {
-    // 无效值
-    INVALID_PUSH = 0;
-    // 事件通知
-    EVENT = 1;
-    // 系统指令
-    COMMAND = 2;
-    // 消息推送
-    MESSAGES = 3;
-  }
 }

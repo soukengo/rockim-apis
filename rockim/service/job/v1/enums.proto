@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package rockim.service.job.v1;
+
+option go_package = "rockimserver/apis/rockim/service/job/v1;v1";
+
+// TaskType 任务类型
+enum TaskType {
+  // 长连接消息投递
+  COMET_DISPATCH = 0;
+}

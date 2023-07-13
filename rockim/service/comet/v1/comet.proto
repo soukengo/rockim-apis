@@ -6,47 +6,43 @@ option go_package = "rockimserver/apis/rockim/service/comet/v1;v1";
 
 import "validate/validate.proto";
 import "rockim/service/service.proto";
-import "rockim/shared/enums/network.proto";
 
-import "rockim/service/comet/v1/types/room.proto";
-
+import "rockim/service/comet/v1/types/comet.proto";
 
 // 长连接服务接口
 service ChannelAPI {
-  // Push 推送数据
-  rpc Push (PushRequest) returns (PushResponse);
-  // PushRoom 推送数据到一个房间
-  rpc PushRoom (PushRoomRequest) returns (PushRoomResponse);
+  // Dispatch 分发数据
+  rpc Dispatch (DispatchRequest) returns (DispatchResponse);
+  // DispatchRoom 分发房间数据
+  rpc DispatchRoom (DispatchRoomRequest) returns (DispatchRoomResponse);
 }
 
-
-// PushRequest 推送请求
-message PushRequest {
+// DispatchRequest 分发数据请求
+message DispatchRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 推送类型
-  rockim.shared.enums.Network.PushOperation operation = 2[(validate.rules).enum.defined_only = true];
   // 连接id
-  repeated string channel_ids = 3[(validate.rules).repeated.min_items = 1];
-  // 推送内容
-  bytes body = 4;
+  repeated string channel_ids = 2[(validate.rules).repeated.min_items = 1];
+  // 推送消息
+  rockim.service.comet.v1.types.PushMessage push = 3;
+  // 控制消息
+  rockim.service.comet.v1.types.ControlMessage control = 4;
 }
+// DispatchResponse 分发数据响应
+message DispatchResponse {
 
-// PushResponse 推送响应
-message PushResponse {
 }
-// PushRoomRequest 推送组请求
-message PushRoomRequest {
+// DispatchRoomRequest 分发房间数据请求
+message DispatchRoomRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 推送类型
-  rockim.shared.enums.Network.PushOperation operation = 2[(validate.rules).enum.defined_only = true];
   // 房间
-  rockim.service.comet.v1.types.Room room = 3[(validate.rules).message.required = true];
-  // 推送内容
-  bytes body = 4;
+  rockim.service.comet.v1.types.Room room = 2[(validate.rules).message.required = true];
+  // 推送消息
+  rockim.service.comet.v1.types.PushMessage push = 3[(validate.rules).message.required = true];
 }
 
-// PushRoomResponse 推送组响应
-message PushRoomResponse {
+// DispatchRoomResponse 分发房间数据响应
+message DispatchRoomResponse {
+
 }

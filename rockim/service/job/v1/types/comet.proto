@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package rockim.service.job.v1.types;
+
+option go_package = "rockimserver/apis/rockim/service/job/v1/types;types";
+
+import "rockim/service/comet/v1/types/comet.proto";
+
+// CometMessage 长连接消息
+message CometMessage {
+  message Target {
+    // 目标类型
+    enum TargetType {
+      CHANNEL = 0;
+      ROOM = 1;
+    }
+    // 目标类型
+    TargetType target_type = 1;
+    // 房间
+    rockim.service.comet.v1.types.Room room = 2;
+    // 连接所在服务器ID
+    string server_id = 3;
+    // 连接ID
+    repeated string channels = 4;
+  }
+  // 应用ID
+  string product_id = 1;
+  // 目标
+  Target target = 2;
+  // 数据内容
+  rockim.service.comet.v1.types.Message message = 3;
+}

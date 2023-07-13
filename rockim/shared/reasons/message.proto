@@ -11,6 +11,8 @@ message Message {
   enum ErrorReason {
     // 不支持的消息接收目标
     TARGET_NOT_SUPPORTED = 0;
+    // 非群成员
+    NOT_GROUP_MEMBER = 1;
   }
 
 }

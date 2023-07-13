@@ -14,4 +14,20 @@ message Comet {
     // 群组
     Group = 0;
   }
+  // 数据类型
+  enum DataType {
+    // 推送
+    PUSH = 0;
+    // 控制
+    CONTROL = 1;
+  }
+  // 推送类型
+  enum PushOperation {
+    // 无效值
+    INVALID_PUSH = 0;
+    // 事件通知
+    EVENT = 1;
+    // 消息推送
+    MESSAGES = 2;
+  }
 }

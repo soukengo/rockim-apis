@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package rockim.service.job.v1;
+
+option go_package = "rockimserver/apis/rockim/service/job/v1;v1";
+
+import "rockim/service/job/v1/types/comet.proto";
+
+
+// CometAPI 长连接相关接口
+service CometAPI {
+  // 分发comet消息
+  rpc Dispatch (CometDispatchRequest) returns (CometDispatchResponse);
+}
+
+// 数据分发请求
+message CometDispatchRequest {
+  repeated rockim.service.job.v1.types.CometMessage list = 1;
+}
+// 数据分发响应
+message CometDispatchResponse {
+
+}
