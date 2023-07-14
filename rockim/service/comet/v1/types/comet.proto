@@ -45,3 +45,18 @@ message ControlMessage{
   // 控制内容
   bytes body = 4;
 }
+
+// RoomJoinControl 加入房间控制
+message RoomJoinControl {
+  repeated Room rooms = 1;
+}
+
+// RoomQuitControl 退出房间控制
+message RoomQuitControl {
+  repeated Room rooms = 1;
+}
+
+// KickOffControl 踢下线控制
+message KickOffControl {
+
+}

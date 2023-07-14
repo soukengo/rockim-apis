@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package rockim.shared.reasons;
+
+option go_package = "rockimserver/apis/rockim/shared/reasons";
+option java_multiple_files = true;
+option java_package = "cn.rockim.shared.reasons";
+option csharp_namespace = "RockIM.Shared.Reasons";
+
+message Comet {
+  enum ErrorReason {
+    // 不支持的控制类型
+    CONTROL_NOT_SUPPORTED = 0;
+    // 控制数据无效
+    CONTROL_DATA_INVALID = 1;
+  }
+}
+
+

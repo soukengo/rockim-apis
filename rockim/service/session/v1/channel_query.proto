@@ -2,21 +2,21 @@ syntax = "proto3";
 
 package rockim.service.user.v1;
 
-option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
+option go_package = "rockimserver/apis/rockim/service/session/v1;v1";
 
 import "rockim/service/service.proto";
 import "validate/validate.proto";
 
-import "rockim/service/user/v1/types/online.proto";
+import "rockim/service/session/v1/types/channel.proto";
 
-// 在线状态接口
-service OnlineQueryAPI {
+// 连接查询接口
+service ChannelQueryAPI {
   // CheckOnline 检查在线状态
   rpc CheckOnline (OnlineCheckRequest) returns (OnlineCheckResponse);
   // BatchCheckOnline 批量检查在线状态
   rpc BatchCheckOnline (OnlineBatchCheckRequest) returns (OnlineBatchCheckResponse);
   // ListUser 获取指定用户的连接ID
-  rpc ListUser (OnlineUserListRequest) returns (OnlineUserListResponse);
+  rpc ListUser (UserChannelListRequest) returns (UserChannelListResponse);
 }
 
 // OnlineCheckRequest 检查在线状态请求
@@ -52,16 +52,16 @@ message OnlineBatchCheckResponse {
 }
 
 
-// OnlineUserListRequest 获取指定用户的连接ID请求
-message OnlineUserListRequest {
+// UserChannelListRequest 获取指定用户的连接ID请求
+message UserChannelListRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 用户ID列表
   repeated string uids = 2[(validate.rules).repeated.min_items = 1, (validate.rules).repeated.items.string.min_len = 1];
 }
 
-// OnlineUserListResponse 获取指定用户的连接ID响应
-message OnlineUserListResponse {
+// UserChannelListResponse 获取指定用户的连接ID响应
+message UserChannelListResponse {
   // 用户列表
-  repeated rockim.service.user.v1.types.OnlineUser users = 1;
+  repeated rockim.service.session.v1.types.UserChannel users = 1;
 }

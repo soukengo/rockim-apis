@@ -1,54 +1,24 @@
 syntax = "proto3";
 
-package rockim.service.user.v1;
+package rockim.service.session.v1;
 
-option go_package = "rockimserver/apis/rockim/service/user/v1;v1";
+option go_package = "rockimserver/apis/rockim/service/session/v1;v1";
 
 import "rockim/service/service.proto";
 import "validate/validate.proto";
 
-// OnlineAPI 在线状态接口
-service OnlineAPI {
-  // Add 添加在线连接
-  rpc Add (OnlineAddRequest) returns (OnlineAddResponse);
-  // Delete 移除在线连接
-  rpc Delete (OnlineDeleteRequest) returns (OnlineDeleteResponse);
-  // Refresh 刷新在线连接
-  rpc Refresh (OnlineRefreshRequest) returns (OnlineRefreshResponse);
+// ChannelAPI 连接管理接口
+service ChannelAPI {
+  // Add 添加连接
+  rpc Add (ChannelAddRequest) returns (ChannelAddResponse);
+  // Delete 移除连接
+  rpc Delete (ChannelDeleteRequest) returns (ChannelDeleteResponse);
+  // Refresh 刷新连接
+  rpc Refresh (ChannelRefreshRequest) returns (ChannelRefreshResponse);
 }
 
-// OnlineAddRequest 添加在线连接请求
-message OnlineAddRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 服务器id
-  string server_id = 2[(validate.rules).string.min_len = 1];
-  // 连接id
-  string channel_id = 3[(validate.rules).string.min_len = 1];
-  // 访问令牌
-  string token = 4[(validate.rules).string.min_len = 1];
-}
-
-// OnlineAddResponse 添加在线连接响应
-message OnlineAddResponse {
-  string uid = 1;
-}
-// OnlineDeleteRequest 移除在线连接请求
-message OnlineDeleteRequest {
-  // 基础参数
-  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
-  // 服务器id
-  string server_id = 2[(validate.rules).string.min_len = 1];
-  // 连接id
-  string channel_id = 3[(validate.rules).string.min_len = 1];
-}
-
-// OnlineDeleteResponse 移除在线连接响应
-message OnlineDeleteResponse {
-
-}
-// OnlineRefreshRequest 刷新在线连接请求
-message OnlineRefreshRequest {
+// ChannelAddRequest 添加连接请求
+message ChannelAddRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 服务器id
@@ -59,13 +29,45 @@ message OnlineRefreshRequest {
   string uid = 4[(validate.rules).string.min_len = 1];
 }
 
-// OnlineRefreshResponse 刷新在线连接响应
-message OnlineRefreshResponse {
+// ChannelAddResponse 添加连接响应
+message ChannelAddResponse {
+
+}
+// ChannelDeleteRequest 移除连接请求
+message ChannelDeleteRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 服务器id
+  string server_id = 2[(validate.rules).string.min_len = 1];
+  // 连接id
+  string channel_id = 3[(validate.rules).string.min_len = 1];
+  // 用户ID
+  string uid = 4[(validate.rules).string.min_len = 1];
+}
+
+// ChannelDeleteResponse 移除连接响应
+message ChannelDeleteResponse {
+
+}
+// ChannelRefreshRequest 刷新连接请求
+message ChannelRefreshRequest {
+  // 基础参数
+  rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
+  // 服务器id
+  string server_id = 2[(validate.rules).string.min_len = 1];
+  // 连接id
+  string channel_id = 3[(validate.rules).string.min_len = 1];
+  // 用户ID
+  string uid = 4[(validate.rules).string.min_len = 1];
+}
+
+// ChannelRefreshResponse 刷新连接响应
+message ChannelRefreshResponse {
 
 }
 
-// OnlineRoomListRequest 获取房间列表请求
-message OnlineRoomListRequest {
+// ChannelRoomListRequest 获取房间列表请求
+message ChannelRoomListRequest {
   // 基础参数
   rockim.service.ServiceRequest base = 1[(validate.rules).message.required = true];
   // 用户ID

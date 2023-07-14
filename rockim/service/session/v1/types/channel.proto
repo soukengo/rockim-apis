@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package rockim.service.session.v1.types;
+
+option go_package = "rockimserver/apis/rockim/service/session/v1/types;types";
+
+// Channel 连接
+message Channel {
+  // 服务器ID
+  string server_id = 1;
+  // 连接ID
+  string channel_id = 2;
+}
+
+// UserChannel 用户连接信息
+message UserChannel {
+  // 用户ID
+  string uid = 1;
+  // 连接列表
+  repeated Channel channels = 2;
+}

@@ -13,6 +13,7 @@ message CometMessage {
     enum TargetType {
       CHANNEL = 0;
       ROOM = 1;
+      USER = 2;
     }
     // 目标类型
     TargetType target_type = 1;
@@ -22,6 +23,8 @@ message CometMessage {
     string server_id = 3;
     // 连接ID
     repeated string channels = 4;
+    // 用户ID
+    repeated string uids = 5;
   }
   // 应用ID
   string product_id = 1;
